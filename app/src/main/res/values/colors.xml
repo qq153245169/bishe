@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="s_c">#f00</color>
+    <color name="partTitleColor">#55222222</color>
+    <color name="partTitleColor2">#FFA500</color>
+    <color name="toolbar_bg">#FBFBFB</color>
+    <color name="item_selector_line">#C2C2C2</color>
+    <color name="item_selector_rect">#FFFFFF</color>
+    <color name="toolbar_text_cancel">#323232</color>
+    <color name="toolbar_line">#E7E7E7</color>
+    <color name="toolbar_text_ok">#39D167</color>
 </resources>

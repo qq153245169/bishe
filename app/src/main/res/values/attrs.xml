@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PartSelect">
+        <attr name="iconVisiable" format="boolean" />
+        <attr name="iconResouse" format="reference" />
+        <attr name="partTitle" format="string" />
+        <attr name="partDecs" format="string" />
+        <attr name="partTitleColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchButton">
+        <attr name="bg_on" format="reference" />
+        <attr name="bg_off" format="reference" />
+    </declare-styleable>
+</resources>

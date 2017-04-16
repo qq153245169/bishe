@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:background="@color/item_selector_rect"
+        android:showDividers="end"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="温馨提示："
+            android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.liangjie06.zuche.module.selectcar.view.PartSelect
+                android:id="@+id/go_strore_part1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:iconResouse="@drawable/take_car_icon"
+                app:iconVisiable="true"
+                app:partDecs="北京"
+                app:partTitle="取车城市">
+
+            </com.example.liangjie06.zuche.module.selectcar.view.PartSelect>
+            <View
+                android:layout_width="0.5dp"
+                android:background="#88888888"
+                android:layout_height="52dp"/>
+            <FrameLayout
+                android:layout_width="72dp"
+                android:layout_height="52dp">
+                <com.example.liangjie06.zuche.view.SwitchButton
+                    android:layout_width="62dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/get_switch"
+                    app:bg_off="@drawable/switch_get_off"
+                    app:bg_on="@drawable/switch_get_on" />
+            </FrameLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="30dp"
+            android:background="#88888888" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.liangjie06.zuche.module.selectcar.view.PartSelect
+                android:id="@+id/go_strore_part3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:iconResouse="@drawable/return_car_icon"
+                app:iconVisiable="true"
+                app:partDecs="北京"
+                app:partTitle="还车城市">
+
+            </com.example.liangjie06.zuche.module.selectcar.view.PartSelect>
+
+            <View
+                android:layout_width="0.5dp"
+                android:background="#88888888"
+                android:layout_height="52dp"/>
+            <FrameLayout
+                android:layout_width="72dp"
+                android:layout_height="52dp">
+                <com.example.liangjie06.zuche.view.SwitchButton
+                    android:layout_width="62dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/return_switch"
+                    app:bg_off="@drawable/switch_return_off"
+                    app:bg_on="@drawable/switch_return_on"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="30dp"
+            android:background="#88888888" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:weightSum="3">
+
+            <com.example.liangjie06.zuche.module.selectcar.view.TimeSelect
+                android:id="@+id/go_strore_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+
+            <com.example.liangjie06.zuche.module.selectcar.view.TimeSelecterCenter
+                android:id="@+id/time_center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+            </com.example.liangjie06.zuche.module.selectcar.view.TimeSelecterCenter>
+
+            <com.example.liangjie06.zuche.module.selectcar.view.TimeSelect
+                android:id="@+id/put_strore_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#88888888" />
+        <Button
+            android:id="@+id/go_strore_to_selctor_car"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/register_btn_bg_selector"
+            android:gravity="center"
+            android:text="去选车"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:id="@+id/bd_map">
+
+    </com.baidu.mapapi.map.MapView>
+</LinearLayout>
