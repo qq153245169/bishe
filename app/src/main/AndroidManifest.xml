@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.liangjie06.zuche">
 
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -40,42 +40,49 @@
 
     <application
         android:name=".MyApplication"
-        tools:replace="android:icon, android:theme"
         android:allowBackup="true"
         android:icon="@mipmap/icon_150"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-    <activity android:name=".activity.SplashActivity"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon, android:theme">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-    <activity android:name=".activity.MainActivity" />
-    <activity android:name=".activity.GuideActivity"/>
-    <activity android:name=".activity.NewsDetailActivity"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.GuideActivity" />
 
+        <activity android:name=".module.updoor.UpHomeActivity"></activity>
+        <activity android:name=".module.youhui.DiscountActivity" />
+        <activity android:name=".module.gostore.GoStoreActivity" />
+        <activity android:name=".module.freeride.FreeRideActivity" />
+        <activity android:name=".module.navi.NaviActivity" />
+        <activity android:name=".module.serach.SearchActivity" />
+        <activity android:name=".module.selectcar.SelectCarActivity" />
+        <activity android:name=".activity.CommonActivity" />
+        <activity android:name=".view.hotcity.CityListActivity" />
+        <activity android:name=".module.register.LoginActivity" />
+        <activity android:name=".module.register.RegisterActivity" />
+        <activity android:name=".module.personinfo.PersonInfoActivity" />
+        <activity android:name=".module.bankaccount.BankAccountActivity" />
+        <activity android:name=".module.bankaccount.AddBankCardActivity" />
+        <activity android:name=".module.personinfo.ChangePwdActivity" />
+        <activity android:name=".module.vip.VipActivity" />
 
-    <activity android:name=".module.updoor.UpHomeActivity"></activity>
-    <activity android:name=".module.youhui.DiscountActivity"/>
-    <activity android:name=".module.gostore.GoStoreActivity"/>
-    <activity android:name=".module.freeride.FreeRideActivity"/>
-    <activity android:name=".module.navi.NaviActivity"/>
-    <activity android:name=".module.serach.SearchActivity"/>
-    <activity android:name=".module.selectcar.SelectCarActivity"/>
-    <activity android:name=".activity.CommonActivity"/>
-        <activity android:name=".view.hotcity.CityListActivity"/>
-    <activity android:name=".module.register.LoginActivity" />
-    <activity android:name=".module.register.RegisterActivity" />
-
-    <!--百度地图service-->
-    <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
-    </service>
-    <meta-data
-        android:name="com.baidu.lbsapi.API_KEY"
-        android:value="1Bf1F5OyN5OG9RdlEmgsNBuOkygqwbkU" />       //key:百度地图SDK开发者申请的Key
+        <!--百度地图service-->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"></service>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="1Bf1F5OyN5OG9RdlEmgsNBuOkygqwbkU" />
+        //key:百度地图SDK开发者申请的Key
     </application>
 </manifest>

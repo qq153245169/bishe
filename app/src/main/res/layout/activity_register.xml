@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -9,8 +10,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -49,47 +50,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:paddingRight="8dp"
-            android:drawableLeft="@drawable/account_general_yzm"
-            android:text="验证码"/>
-        <View
-            android:layout_width="0.8dp"
-            android:layout_height="match_parent"
-            android:background="#AAAAAAAA"
-            android:paddingBottom="1.5dp"
-            android:paddingTop="1.5dp"/>
-
-        <EditText
-            android:layout_marginLeft="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入验证码"
-            android:background="@null"
-            android:textColorHint="#FFFFFF"
-            android:id="@+id/et_radom_num"/>
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#66666666">
-
-    </View>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -126,8 +88,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -165,8 +127,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -203,8 +165,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -212,7 +174,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:paddingRight="8dp"
-            android:drawableLeft="@drawable/account_login_number"
+            android:drawableLeft="@drawable/account_general_yzm"
             android:text="性    别"/>
         <View
             android:layout_width="0.8dp"
@@ -221,14 +183,25 @@
             android:paddingBottom="1.5dp"
             android:paddingTop="1.5dp"/>
 
-        <EditText
-            android:layout_marginLeft="4dp"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入性别"
-            android:background="@null"
-            android:textColorHint="#FFFFFF"
-            android:id="@+id/et_sex"/>
+            android:layout_height="match_parent"
+            android:id="@+id/rg_sex"
+            android:paddingLeft="70dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/rd_man"
+                android:text="男"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="70dp"
+                android:id="@+id/rd_women"
+                android:text="女"/>
+        </RadioGroup>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -241,8 +214,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -279,8 +252,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView

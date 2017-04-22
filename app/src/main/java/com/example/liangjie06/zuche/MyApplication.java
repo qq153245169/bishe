@@ -3,6 +3,7 @@ package com.example.liangjie06.zuche;
 import android.app.Application;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.example.liangjie06.zuche.utils.ThreadPool;
 
 import cn.bmob.v3.Bmob;
 
@@ -18,6 +19,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
+        ThreadPool.startup();
         //百度地图
         //SDKInitializer.initialize(mContext);
 

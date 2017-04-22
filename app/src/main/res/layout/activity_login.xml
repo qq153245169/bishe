@@ -94,6 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_register"
+            android:padding="4dp"
             android:textColor="#FFA500"
             android:layout_alignParentLeft="true"
             android:text="注册会员"/>
@@ -101,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_forget"
+            android:padding="4dp"
             android:layout_alignParentRight="true"
             android:text="忘记密码？"
             android:textColor="#BBBBBBBB"/>
