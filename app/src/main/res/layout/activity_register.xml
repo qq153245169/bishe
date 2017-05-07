@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:paddingRight="8dp"
-            android:drawableLeft="@drawable/account_login_number"
+            android:drawableLeft="@drawable/icon_user"
             android:text="姓    名"/>
         <View
             android:layout_width="0.8dp"

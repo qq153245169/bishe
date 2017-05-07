@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.global.TimePickGlobal;
-import com.example.liangjie06.zuche.module.selectcar.SelectCarActivity;
+import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.module.selectcar.view.PartSelect;
 import com.example.liangjie06.zuche.module.selectcar.view.TimeSelect;
 import com.example.liangjie06.zuche.module.selectcar.view.TimeSelecterCenter;
@@ -120,7 +120,7 @@ public class UpHomeActivity extends AppCompatActivity implements View.OnClickLis
                 showDate(TimePickGlobal.ONE_DAY);
                 break;
             case R.id.go_strore_to_selctor_car:
-                SelectCarActivity.startActivity(mContext);
+                //SelectActivity.startActivity(mContext);
                 break;
             case R.id.go_strore_part1:
                 getCityName(1);

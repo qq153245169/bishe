@@ -75,4 +75,8 @@ public class PartSelect extends FrameLayout {
     public void setPartDesc(String string){
         mDecs.setText(string);
     }
+
+    public String getPartDesc(){
+        return (String) mDecs.getText();
+    }
 }

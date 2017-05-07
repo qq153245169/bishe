@@ -80,6 +80,7 @@ public class BankAccountActivity extends Activity  {
         getInfo();
         mAdapter = new MyAdapter();
         listView.setAdapter(mAdapter);
+
     }
 
     private void initView(){

@@ -2,6 +2,8 @@ package com.example.liangjie06.zuche.base.impl;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
@@ -13,11 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.activity.AboutActivity;
 import com.example.liangjie06.zuche.base.BasePager;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.module.bankaccount.BankAccountActivity;
+import com.example.liangjie06.zuche.module.fade.NewUserActivity;
+import com.example.liangjie06.zuche.module.fade.QAActivity;
 import com.example.liangjie06.zuche.module.personinfo.PersonInfoActivity;
+import com.example.liangjie06.zuche.module.register.LoginActivity;
+import com.example.liangjie06.zuche.module.vip.VipActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 
 import java.util.List;
@@ -44,29 +51,32 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
                 case 0:
                     if(!TextUtils.isEmpty(backCardId)){
                         String str = backCardId.substring(4, backCardId.length() - 4);
-                        String newStr = backCardId.replace(str, "****");
+                        String newStr = backCardId.replace(str, " **** ");
                         tvBankCardID.setText(newStr);
                     }
                     tvJifen.setText(jiFen+"");
-                    tvYuE.setText(yuE+"");
                     if(jiFen>=50 && jiFen<200){
                         tvHuiYuanDJ.setText("银卡会员");
                         tvHuiYuan.setText("银卡会员");
+                        tvHY.setText("98");
                         imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_silver);
                         imgHYIcon.setImageResource(R.drawable.icon_privilege_card_silver);
                     }else if (jiFen>= 200&&jiFen<500){
                         tvHuiYuanDJ.setText("黄金会员");
                         tvHuiYuan.setText("黄金会员");
+                        tvHY.setText("95");
                         imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card);
                         imgHYIcon.setImageResource(R.drawable.icon_privilege_card);
                     }else if(jiFen >=500&&jiFen<1000){
                         tvHuiYuanDJ.setText("铂金会员");
                         tvHuiYuan.setText("铂金会员");
+                        tvHY.setText("92");
                         imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_normal);
                         imgHYIcon.setImageResource(R.drawable.icon_privilege_card_normal);
                     }else if (jiFen>=1000) {
                         tvHuiYuanDJ.setText("钻石会员");
                         tvHuiYuan.setText("钻石会员");
+                        tvHY.setText("88");
                         imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_diamond);
                         imgHYIcon.setImageResource(R.drawable.icon_privilege_card_diamond);
                     }
@@ -82,8 +92,6 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
     private TextView tvBankCardID;
     private LinearLayout llJifen;
     private TextView tvJifen;
-    private LinearLayout llYuE;
-    private TextView tvYuE;
     private LinearLayout llHuiYuan;
     private TextView tvHuiYuanDJ;
     private TextView tvHY;
@@ -98,6 +106,7 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
     private ImageView imgHYDJIcon;
     private ImageView imgHYIcon;
     private TextView tvHuiYuan;
+    private User myUser;
 
     //private Account account;
     public PersonalPager(Activity activity) {
@@ -106,6 +115,21 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
 
     @Override
     public void initData() {
+
+
+        myUser =  BmobUser.getCurrentUser(User.class);
+        if (myUser == null){
+            Intent intent = new Intent(mActivity, LoginActivity.class);
+            mActivity.startActivityForResult(intent, 10);
+
+        }else {
+            Log.e("lj", "dengluchengg"+ myUser.getObjectId() + "name"+myUser.getUsername());
+            preView();
+        }
+
+    }
+
+    private void preView() {
         View view = View.inflate(mActivity, R.layout.personal_pager, null);
         flContent.addView(view);
 
@@ -117,9 +141,6 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
         llJifen = (LinearLayout) view.findViewById(R.id.ll_jifen);
         llJifen.setOnClickListener(this);
         tvJifen = (TextView) view.findViewById(R.id.tv_jifen);
-        llYuE = (LinearLayout) view.findViewById(R.id.ll_yue);
-        llYuE.setOnClickListener(this);
-        tvYuE = (TextView) view.findViewById(R.id.tv_yue);
         llHuiYuan = (LinearLayout) view.findViewById(R.id.ll_tequan);
         llHuiYuan.setOnClickListener(this);
         tvHuiYuanDJ = (TextView) view.findViewById(R.id.tv_huiyuandengji);
@@ -150,19 +171,21 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
                 BankAccountActivity.startBankAccountActivity(mActivity);
                 break;
             case R.id.ll_jifen:
-
-                break;
-            case R.id.ll_yue:
+                VipActivity.startVipActivity(mActivity);
                 break;
             case R.id.ll_tequan:
+                VipActivity.startVipActivity(mActivity);
                 break;
             case R.id.ll_newuser:
+                NewUserActivity.startNewUserActivity(mActivity);
                 break;
             case R.id.ll_wenti:
+                QAActivity.startQAActivity(mActivity);
                 break;
             case R.id.ll_fankui:
                 break;
             case R.id.about:
+                AboutActivity.startAboutActivity(mActivity);
                 break;
             case R.id.kefu:
                 break;
@@ -173,9 +196,8 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
         ThreadPool.runOnPool(new Runnable() {
             @Override
             public void run() {
-                User user = BmobUser.getCurrentUser(User.class);
                 BmobQuery<Account> accountBmobQuery = new BmobQuery<Account>();
-                accountBmobQuery.addWhereEqualTo("userName",user.getUsername());
+                accountBmobQuery.addWhereEqualTo("userName",myUser.getUsername());
                 accountBmobQuery.setLimit(3);
                 accountBmobQuery.findObjects(new FindListener<Account>() {
                     @Override
@@ -184,8 +206,7 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
                             if (list.size()>0){
                                 Account account = list.get(0);
                                 backCardId = account.getBankCard();
-                                jiFen = account.getJifen();
-                                yuE = account.getYue();
+                                jiFen = myUser.getJiFen();
                                 Message msg= Message.obtain();
                                 msg.what = 0;
                                 Log.e("lj",backCardId +"   "+
@@ -207,4 +228,5 @@ public class PersonalPager extends BasePager implements View.OnClickListener{
             }
         });
     }
+
 }

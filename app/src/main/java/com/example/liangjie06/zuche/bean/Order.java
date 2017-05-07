@@ -7,24 +7,69 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class Order extends BmobObject {
-    public String getObjectId() {
-        return objectId;
-    }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
-    private String objectId;
     private String partFrom;
     private String partTo;
     private String timeFrom;
     private String timeTo;
-    private String dayMoney;
-    private String day;
+    private Float dayMoney;
+    private Float allMoney;
+    private Integer day;
     private String carName;
     private String completeTime;
-    private boolean isComplete;
+    private Boolean isComplete;
+    private Boolean isPay;
+    private Boolean isDelay;
+    private String userName;
+    private Long orderId;
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Float getAllMoney() {
+        return allMoney;
+    }
+
+    public void setAllMoney(Float allMoney) {
+        this.allMoney = allMoney;
+    }
+
+    public Boolean getDelay() {
+        return isDelay;
+    }
+
+    public void setDelay(Boolean delay) {
+        isDelay = delay;
+    }
+
+    public Boolean getPay() {
+        return isPay;
+    }
+
+    public void setPay(Boolean pay) {
+        isPay = pay;
+    }
+
+    public Boolean getComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(Boolean complete) {
+        isComplete = complete;
+    }
 
     public String getPartFrom() {
         return partFrom;
@@ -58,19 +103,19 @@ public class Order extends BmobObject {
         this.timeTo = timeTo;
     }
 
-    public String getDayMoney() {
+    public Float getDayMoney() {
         return dayMoney;
     }
 
-    public void setDayMoney(String dayMoney) {
+    public void setDayMoney(Float dayMoney) {
         this.dayMoney = dayMoney;
     }
 
-    public String getDay() {
+    public Integer getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(Integer day) {
         this.day = day;
     }
 
@@ -89,14 +134,5 @@ public class Order extends BmobObject {
     public void setCompleteTime(String completeTime) {
         this.completeTime = completeTime;
     }
-
-    public boolean isComplete() {
-        return isComplete;
-    }
-
-    public void setComplete(boolean complete) {
-        isComplete = complete;
-    }
-
 
 }

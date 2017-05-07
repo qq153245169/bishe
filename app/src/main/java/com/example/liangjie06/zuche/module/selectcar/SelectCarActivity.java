@@ -1,3 +1,4 @@
+/*
 package com.example.liangjie06.zuche.module.selectcar;
 
 import android.app.Activity;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 
 
 
+*/
 /**
  * Created by Jack-Liang on 2017/3/5.
- */
+ *//*
+
 public class SelectCarActivity extends Activity {
     private ListView mCarList;
     public static void startActivity(Context context){
@@ -32,3 +35,4 @@ public class SelectCarActivity extends Activity {
 
     }
 }
+*/

@@ -3,4 +3,5 @@
     <string name="picker_sure">确定</string>
     <string name="picker_cancel">取消</string>
     <string name="picker_title">请选择出生日期</string>
+    <string name="ruhe">"点击首页的免费注册，进入免费注册页面，按照要求填写注册信息。仔细阅读服务规则，点击\"确认\"按钮,完成注册。"</string>
 </resources>

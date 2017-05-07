@@ -10,6 +10,62 @@
         android:gravity="center_vertical"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_user"
+            android:drawablePadding="10dp"
+            android:text="姓名"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:id="@+id/tv_name" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#66666666">
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_sex"
+            android:drawablePadding="10dp"
+            android:text="性别"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:id="@+id/tv_sex" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#66666666">
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
         android:id="@+id/huiyuan"
         android:layout_height="wrap_content">
         <TextView
@@ -62,43 +118,6 @@
             android:layout_height="wrap_content"
             android:textColor="#AAAAAA"
             android:textSize="13sp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="4dp"
-            android:src="@drawable/base_cridetcard_arrow"/>
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#66666666">
-    </View>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="#FFFFFF"
-        android:gravity="center_vertical"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:id="@+id/email"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:paddingLeft="20dp"
-            android:textSize="15sp"
-            android:textColor="#AAAAAA"
-            android:drawableLeft="@drawable/account_detail_mail"
-            android:drawablePadding="10dp"
-            android:layout_height="wrap_content"
-            android:text="邮箱"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#AAAAAA"
-            android:text="便于接受电子账单"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

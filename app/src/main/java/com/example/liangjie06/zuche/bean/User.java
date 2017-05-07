@@ -39,9 +39,27 @@ public class User extends BmobUser{
         this.userJSZ = userJS;
     }
 
-    public String name;
-    public boolean userSex;
-    public String userID;
-    public String userJSZ;
+    public Integer getJiFen() {
+        return jiFen;
+    }
+
+    public void setJiFen(Integer jiFen) {
+        this.jiFen = jiFen;
+    }
+
+    public Integer getCurJifen() {
+        return curJifen;
+    }
+
+    public void setCurJifen(Integer curJifen) {
+        this.curJifen = curJifen;
+    }
+
+    private String name;
+    private Boolean userSex;
+    private String userID;
+    private String userJSZ;
+    private Integer jiFen = 0;
+    private Integer curJifen = 0;
 
 }

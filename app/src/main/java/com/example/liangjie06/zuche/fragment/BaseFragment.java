@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.liangjie06.zuche.R;
-import com.example.liangjie06.zuche.module.gostore.GoStoreFragment;
 
 
 /**
@@ -59,7 +58,6 @@ public abstract class BaseFragment extends Fragment {
         FragmentTransaction transaction = getFragmentManager()
                 .beginTransaction();
         //如果fragment2没有被添加过，就添加它替换当前的fragment1
-            if(fragment1 instanceof GoStoreFragment){
                 Log.e("lj1","第一次添加第一页");
                 transaction.add(R.id.fl_main,fragment2)
                         .hide(fragment1)
@@ -68,15 +66,7 @@ public abstract class BaseFragment extends Fragment {
                         .addToBackStack("qw")
                         // 提交事务
                         .commitAllowingStateLoss();
-            }else {
-                Log.e("lj1","第一次添加第二页");
-                transaction.replace(R.id.fl_main,fragment2)
-                        //.remove(fragment1)
-                        //加入返回栈，这样你点击返回键的时候就会回退到fragment1了
-                        //.addToBackStack("qw")
-                        // 提交事务
-                        .commitAllowingStateLoss();
-            }
+
 
     }
 }

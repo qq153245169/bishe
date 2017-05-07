@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.global.TimePickGlobal;
-import com.example.liangjie06.zuche.module.selectcar.SelectCarActivity;
+import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.module.selectcar.view.PartSelect;
 import com.example.liangjie06.zuche.module.selectcar.view.TimeSelect;
 import com.example.liangjie06.zuche.module.selectcar.view.TimeSelecterCenter;
@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import static android.R.attr.data;
+import static com.baidu.location.h.g.m;
 
 
 /**
@@ -36,6 +36,7 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
     private SimpleDateFormat sf = new SimpleDateFormat("MM-dd", Locale.ENGLISH);
     private long mLastTime = System.currentTimeMillis(); // 上次设置的时间
     private boolean left = false;
+    private int dayCount = 1;
 
 
     // 数据的回调
@@ -56,7 +57,8 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
                 rightDay = getDay(milliseconds);
                 Log.e("lj",leftDay + "rightDay");
                 mRightTime.setGetData(text);
-                mCenterTime.setTvCenterDays(rightDay - leftDay + "");
+                dayCount = rightDay - leftDay;
+                mCenterTime.setTvCenterDays(dayCount + "");
             }
 
         }
@@ -160,7 +162,11 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
                 showDate(TimePickGlobal.ONE_DAY);
                 break;
             case R.id.go_strore_to_selctor_car:
-                SelectCarActivity.startActivity(mContext);
+                String getStr = mPart1.getPartDesc() + mPart2.getHeight();
+                String returnStr = mPart3.getPartDesc() + mPart4.getHeight();
+                String getTime = mLeftTime.getGetData();
+                String returnTime = mRightTime.getGetData();
+                SelectActivity.startActivity(mContext, getStr, returnStr, getTime, returnTime, dayCount);
                 break;
             case R.id.go_strore_part1:
                 getCityName(1);

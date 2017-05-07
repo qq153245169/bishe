@@ -8,7 +8,6 @@ import cn.bmob.v3.BmobObject;
 
 public class Account extends BmobObject {
     private String userName;
-    private int jifen = 0;
     private String bankCard;
     private String bank;
     private String name;
@@ -47,16 +46,6 @@ public class Account extends BmobObject {
         this.bank = bank;
     }
 
-    private float yue = (float) 0.00;
-
-    public float getYue() {
-        return yue;
-    }
-
-    public void setYue(float yue) {
-        this.yue = yue;
-    }
-
     public String getBankCard() {
         return bankCard;
     }
@@ -65,13 +54,6 @@ public class Account extends BmobObject {
         this.bankCard = bankCard;
     }
 
-    public int getJifen() {
-        return jifen;
-    }
-
-    public void setJifen(int jifen) {
-        this.jifen = jifen;
-    }
 
     public String getUserName() {
         return userName;

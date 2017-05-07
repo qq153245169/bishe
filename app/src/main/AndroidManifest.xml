@@ -64,8 +64,7 @@
         <activity android:name=".module.freeride.FreeRideActivity" />
         <activity android:name=".module.navi.NaviActivity" />
         <activity android:name=".module.serach.SearchActivity" />
-        <activity android:name=".module.selectcar.SelectCarActivity" />
-        <activity android:name=".activity.CommonActivity" />
+        <activity android:name=".activity.PayActivity"/>
         <activity android:name=".view.hotcity.CityListActivity" />
         <activity android:name=".module.register.LoginActivity" />
         <activity android:name=".module.register.RegisterActivity" />
@@ -74,6 +73,14 @@
         <activity android:name=".module.bankaccount.AddBankCardActivity" />
         <activity android:name=".module.personinfo.ChangePwdActivity" />
         <activity android:name=".module.vip.VipActivity" />
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".module.fade.NewUserActivity" />
+        <activity android:name=".module.fade.QAActivity" />
+        <activity android:name=".module.fade.FadeActivity" />
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".module.selectcar.SelectActivity" />
+        <activity android:name=".module.selectcar.JiaoYiActivity" />
+        <activity android:name=".activity.SelectBankCardActivity" />
 
         <!--百度地图service-->
         <service
