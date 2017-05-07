@@ -51,7 +51,7 @@ public abstract class BaseFragment extends Fragment {
      *            当前fragment
      * @param fragment2
      *            跳转后的fragment
-     */
+     *//*
     public void showFragment(Fragment fragment1, Fragment fragment2) {
         Log.e("lj","base");
         // 获取 FragmentTransaction  对象
@@ -68,5 +68,5 @@ public abstract class BaseFragment extends Fragment {
                         .commitAllowingStateLoss();
 
 
-    }
+    }*/
 }
