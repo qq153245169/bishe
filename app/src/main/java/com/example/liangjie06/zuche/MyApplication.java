@@ -21,7 +21,7 @@ public class MyApplication extends Application {
         mContext = this;
         ThreadPool.startup();
         //百度地图
-        //SDKInitializer.initialize(mContext);
+//        SDKInitializer.initialize(mContext);
 
         Bmob.initialize(mContext, "dc4dece296142e01b61c37d36b108fee");
 

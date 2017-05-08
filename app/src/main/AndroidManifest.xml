@@ -86,10 +86,12 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote">
+
+        </service>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="1Bf1F5OyN5OG9RdlEmgsNBuOkygqwbkU" />
-        //key:百度地图SDK开发者申请的Key
+        <!--//key:百度地图SDK开发者申请的Key-->
     </application>
 </manifest>

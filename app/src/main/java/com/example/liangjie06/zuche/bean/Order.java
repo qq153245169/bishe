@@ -10,8 +10,8 @@ public class Order extends BmobObject {
 
     private String partFrom;
     private String partTo;
-    private String timeFrom;
-    private String timeTo;
+    private Long timeFrom;
+    private Long timeTo;
     private Float dayMoney;
     private Float allMoney;
     private Integer day;
@@ -22,6 +22,10 @@ public class Order extends BmobObject {
     private Boolean isDelay;
     private String userName;
     private Long orderId;
+    private String xiangShu;
+    private String paiLiang;
+    private String chengZuo;
+    private String icon;
 
     public Long getOrderId() {
         return orderId;
@@ -87,19 +91,19 @@ public class Order extends BmobObject {
         this.partTo = partTo;
     }
 
-    public String getTimeFrom() {
+    public Long getTimeFrom() {
         return timeFrom;
     }
 
-    public void setTimeFrom(String timeFrom) {
+    public void setTimeFrom(Long timeFrom) {
         this.timeFrom = timeFrom;
     }
 
-    public String getTimeTo() {
+    public Long getTimeTo() {
         return timeTo;
     }
 
-    public void setTimeTo(String timeTo) {
+    public void setTimeTo(Long timeTo) {
         this.timeTo = timeTo;
     }
 
@@ -135,4 +139,35 @@ public class Order extends BmobObject {
         this.completeTime = completeTime;
     }
 
+    public String getXiangShu() {
+        return xiangShu;
+    }
+
+    public void setXiangShu(String xiangShu) {
+        this.xiangShu = xiangShu;
+    }
+
+    public String getPaiLiang() {
+        return paiLiang;
+    }
+
+    public void setPaiLiang(String paiLiang) {
+        this.paiLiang = paiLiang;
+    }
+
+    public String getChengZuo() {
+        return chengZuo;
+    }
+
+    public void setChengZuo(String chengZuo) {
+        this.chengZuo = chengZuo;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

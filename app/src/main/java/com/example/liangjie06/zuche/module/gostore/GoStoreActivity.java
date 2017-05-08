@@ -1,13 +1,18 @@
 package com.example.liangjie06.zuche.module.gostore;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.global.TimePickGlobal;
@@ -25,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static android.R.attr.data;
 import static com.baidu.location.h.g.m;
 
 
@@ -37,6 +43,8 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
     private long mLastTime = System.currentTimeMillis(); // 上次设置的时间
     private boolean left = false;
     private int dayCount = 1;
+    private boolean topSwitch = true;
+    private boolean bottomSwitch = true;
 
 
     // 数据的回调
@@ -46,6 +54,8 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
             mLastTime = milliseconds;
             String text = getDateToString(milliseconds);
             if (left) {
+                getTime = milliseconds;
+                returnTime = milliseconds + TimePickGlobal.ONE_DAY;
                 leftDay = getDay(milliseconds);
                 Log.e("lj",leftDay + "leftDay");
                 String rightTime = getDateToString(milliseconds + TimePickGlobal.ONE_DAY );
@@ -57,6 +67,7 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
                 rightDay = getDay(milliseconds);
                 Log.e("lj",leftDay + "rightDay");
                 mRightTime.setGetData(text);
+                returnTime = milliseconds;
                 dayCount = rightDay - leftDay;
                 mCenterTime.setTvCenterDays(dayCount + "");
             }
@@ -77,6 +88,8 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
     private int leftDay;
     private int rightDay;
     private Context mContext;
+    private Long getTime = System.currentTimeMillis();
+    private Long returnTime = System.currentTimeMillis() + TimePickGlobal.ONE_DAY;
 
 
     public static void startActivity(Context context){
@@ -126,11 +139,13 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
                     mPart2.setPartTitleColor(R.color.partTitleColor2);
                     mPart2.setPartTitle("送车地址");
                     mPart2.setPartDesc("请选择地址");
+                    topSwitch = true;
 
                 }else {
                     mPart2.setPartTitleColor(R.color.partTitleColor);
                     mPart2.setPartTitle("取车门店");
                     mPart2.setPartDesc("选择门店");
+                    topSwitch = false;
                 }
 
             }
@@ -139,10 +154,12 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void Onchanged(boolean isOpen) {
                 if(isOpen){
+                    bottomSwitch = true;
                     mPart4.setPartTitle("取车地址");
                     mPart4.setPartDesc("请选择地址");
                     mPart4.setPartTitleColor(R.color.partTitleColor2);
                 }else {
+                    bottomSwitch = false;
                     mPart4.setPartTitle("还车门店");
                     mPart4.setPartDesc("选择门店");
                     mPart4.setPartTitleColor(R.color.partTitleColor);
@@ -164,21 +181,24 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.go_strore_to_selctor_car:
                 String getStr = mPart1.getPartDesc() + mPart2.getHeight();
                 String returnStr = mPart3.getPartDesc() + mPart4.getHeight();
-                String getTime = mLeftTime.getGetData();
-                String returnTime = mRightTime.getGetData();
                 SelectActivity.startActivity(mContext, getStr, returnStr, getTime, returnTime, dayCount);
                 break;
             case R.id.go_strore_part1:
                 getCityName(1);
                 break;
             case R.id.go_strore_part2:
-                getCityName(2);
+                if (topSwitch){
+                    showDialog(mPart2);
+
+                }
                 break;
             case R.id.go_strore_part3:
                 getCityName(3);
                 break;
             case R.id.go_strore_part4:
-                getCityName(4);
+                if (bottomSwitch){
+                    showDialog(mPart4);
+                }
                 break;
         }
     }
@@ -220,20 +240,60 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
         startActivityForResult(intent, 10);
     }
 
+    private void showDialog(final PartSelect ps){
+        LayoutInflater li = LayoutInflater.from(mContext);
+        View promptsView = li.inflate(R.layout.dialog_input, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                mContext);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.et_input);
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                // edit text
+                                if (userInput.getText() != null){
+                                    ps.setPartDesc(String.valueOf(userInput.getText()));
+                                }else {
+                                    Toast.makeText(mContext, "请输入正确地址", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        Bundle bundle = data.getExtras();
+        String cityName = bundle.getString("city");
             switch (resultCode){
                 case 1:
-                    Bundle bundle = data.getExtras();
-                    String cityName = bundle.getString("city");
+
                     mPart1.setPartDesc(cityName);
                     break;
                 case 2:
+                    mPart2.setPartDesc(cityName);
                     break;
                 case 3:
+                    mPart3.setPartDesc(cityName);
                     break;
                 case 4:
+                    mPart4.setPartDesc(cityName);
                     break;
                 default:
                     break;

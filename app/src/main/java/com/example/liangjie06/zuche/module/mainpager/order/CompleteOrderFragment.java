@@ -19,15 +19,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.liangjie06.zuche.R;
-import com.example.liangjie06.zuche.bean.Car;
-import com.example.liangjie06.zuche.module.selectcar.JiaoYiActivity;
+import com.example.liangjie06.zuche.bean.Order;
+import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
+import com.example.liangjie06.zuche.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -49,22 +51,24 @@ public class CompleteOrderFragment extends Fragment {
         }
     };
 
-    private ArrayList<Car> carList;
+    private ArrayList<Order> carList = new ArrayList<Order>() ;
     private ListView listView;
     private CarAdapter mAdapter;
     private SelectActivity mActivity;
+    private User myUser;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = (SelectActivity) context;
+        //mActivity = (SelectActivity) context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        View v = inflater.inflate(R.layout.layout_second, container, false);
+        View v = inflater.inflate(R.layout.layout_thrid, container, false);
         listView = (ListView) v.findViewById(R.id.list_car);
+        myUser = BmobUser.getCurrentUser(User.class);
         return v;
     }
 
@@ -72,13 +76,13 @@ public class CompleteOrderFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getInfo();
-        mAdapter = new CompleteOrderFragment.CarAdapter();
+        mAdapter = new CarAdapter();
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                JiaoYiActivity.startActivity(getActivity(), mActivity.getPart, mActivity.retPart,
-                        mActivity.getTime, mActivity.retTime, mActivity.dayCount, carList.get(position));
+                /*JiaoYiActivity.startActivity(getActivity(), mActivity.getPart, mActivity.retPart,
+                        mActivity.getTime, mActivity.retTime, mActivity.dayCount, carList.get(position));*/
             }
         });
 
@@ -88,22 +92,26 @@ public class CompleteOrderFragment extends Fragment {
         ThreadPool.runOnPool(new Runnable() {
             @Override
             public void run() {
-                BmobQuery<Car> accountBmobQuery = new BmobQuery<Car>();
-                accountBmobQuery.addWhereEqualTo("leiXing", "2")
-                        .findObjects(new FindListener<Car>() {
+                BmobQuery<Order> accountBmobQuery = new BmobQuery<Order>();
+                accountBmobQuery.addWhereEqualTo("userName", myUser.getUsername())
+                        .findObjects(new FindListener<Order>() {
                             @Override
-                            public void done(List<Car> list, BmobException e) {
+                            public void done(List<Order> list, BmobException e) {
                                 if (e == null) {
-                                    carList = (ArrayList<Car>) list;
+                                    for (Order o : list) {
+                                        if (o.getComplete()&&o.getPay() ) {
+                                            carList.add(o);
+                                        }
+                                    }
 
                                     Message msg = Message.obtain();
                                     msg.what = 1;
-                                    Log.e("lj", "车辆列表查询成功" + list.size() + "   " + carList.toString());
+                                    Log.e("lj", "订单列表查询成功" + list.size() + "   " + carList.toString());
                                     mHandler.sendEmptyMessage(msg.what);
                                 } else {
                                     Message msg = Message.obtain();
                                     msg.what = 0;
-                                    Log.e("lj", "车辆列表查询失败" + e.toString());
+                                    Log.e("lj", "订单列表查询失败" + e.toString());
                                     mHandler.sendEmptyMessage(msg.what);
                                 }
                             }
@@ -113,21 +121,6 @@ public class CompleteOrderFragment extends Fragment {
     }
 
     class CarAdapter extends BaseAdapter {
-        @Override
-        public int getItemViewType(int position) {
-            if ("0".equals(carList.get(position).getType())) {
-                return 0;
-            } else if ("1".equals(carList.get(position).getType())) {
-                return 1;
-            } else {
-                return 2;
-            }
-        }
-
-        @Override
-        public int getViewTypeCount() {
-            return super.getViewTypeCount();
-        }
 
         @Override
         public int getCount() {
@@ -149,51 +142,46 @@ public class CompleteOrderFragment extends Fragment {
             ViewHoder viewHoder;
             if (convertView == null) {
                 viewHoder = new ViewHoder();
-                if (getItemViewType(position) == 1) {
-                    convertView = View.inflate(getActivity(), R.layout.car_item2, null);
-                    viewHoder.tvIce = (TextView) convertView.findViewById(R.id.ice);
-                    if (!carList.get(position).getIce()) {
-                        viewHoder.tvIce.setText("超低价秒杀");
-                    }
-                } else {
-                    convertView = View.inflate(getActivity(), R.layout.car_item1, null);
-                }
+
+                convertView = View.inflate(getActivity(), R.layout.order_item, null);
+
                 viewHoder.ivCar = (ImageView) convertView.findViewById(R.id.icon_car);
-                viewHoder.tvCarName = (TextView) convertView.findViewById(R.id.car_name);
-                viewHoder.tvCarDesc = (TextView) convertView.findViewById(R.id.car_decs);
-                viewHoder.ivXin = (ImageView) convertView.findViewById(R.id.car_xin);
-                viewHoder.ivRe = (ImageView) convertView.findViewById(R.id.car_re);
-                viewHoder.ivte = (ImageView) convertView.findViewById(R.id.car_te);
-                viewHoder.tvPrice = (TextView) convertView.findViewById(R.id.car_price);
+                viewHoder.tvPart = (TextView) convertView.findViewById(R.id.tv_part);
+                viewHoder.tvState = (TextView) convertView.findViewById(R.id.tv_state);
+                viewHoder.tvCarName = (TextView) convertView.findViewById(R.id.tv_title);
+                viewHoder.tvCarDesc = (TextView) convertView.findViewById(R.id.tv_desc);
+                viewHoder.tvPrice = (TextView) convertView.findViewById(R.id.tv_price);
+                viewHoder.tvGetTime = (TextView) convertView.findViewById(R.id.time_get);
+                viewHoder.tvReturnTime = (TextView) convertView.findViewById(R.id.time_return);
+                viewHoder.tvDay = (TextView) convertView.findViewById(R.id.day);
                 convertView.setTag(viewHoder);
             } else {
                 viewHoder = (ViewHoder) convertView.getTag();
             }
-            Glide.with(getActivity()).load(carList.get(position).getIcon().getUrl()).placeholder(R.drawable.car_image).into(viewHoder.ivCar);
+            Glide.with(getActivity()).load(carList.get(position).getIcon()).placeholder(R.drawable.car_image).into(viewHoder.ivCar);
             viewHoder.tvCarName.setText(carList.get(position).getCarName());
             viewHoder.tvCarDesc.setText(carList.get(position).getXiangShu() + "｜" +
                     carList.get(position).getPaiLiang() + "｜" + carList.get(position).getChengZuo());
-            if (carList.get(position).getXin())
-                viewHoder.ivXin.setVisibility(View.VISIBLE);
-            if (carList.get(position).getHot())
-                viewHoder.ivRe.setVisibility(View.VISIBLE);
-            if (carList.get(position).getTe())
-                viewHoder.ivte.setVisibility(View.VISIBLE);
-            viewHoder.tvPrice.setText(carList.get(position).getPrice() + "");
+            viewHoder.tvPrice.setText(carList.get(position).getAllMoney() + "");
+            viewHoder.tvDay.setText(carList.get(position).getDay() + "");
+            viewHoder.tvPart.setText(carList.get(position).getOrderId() + "");
+            viewHoder.tvGetTime.setText(TimeUtils.getDateToYMD(carList.get(position).getTimeFrom()));
+            viewHoder.tvReturnTime.setText(TimeUtils.getDateToYMD(carList.get(position).getTimeTo()));
 
+            viewHoder.tvState.setText("已完成");
             return convertView;
         }
     }
 
     class ViewHoder {
         public ImageView ivCar;
+        private TextView tvPart;
+        private TextView tvState;
         public TextView tvCarName;
         public TextView tvCarDesc;
-        public ImageView ivXin;
-        public ImageView ivRe;
-        public ImageView ivte;
         public TextView tvPrice;
-        public TextView tvIce;
+        public TextView tvGetTime;
+        private TextView tvReturnTime;
+        private TextView tvDay;
     }
-
 }

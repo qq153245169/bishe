@@ -44,9 +44,8 @@ public class AllCitySqliteOpenHelper extends SQLiteOpenHelper {
     public void createDataBase() throws IOException {
         boolean dbExist = checkDataBase();
         if (dbExist) {
-            // ���ݿ��Ѵ��ڣ�do nothing.
+
         } else {
-            // �������ݿ�
             try {
                 File dir = new File(DB_PATH);
                 if (!dir.exists()) {

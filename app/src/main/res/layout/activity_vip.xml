@@ -50,12 +50,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
+                    android:gravity="center_horizontal"
 
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="14dp"
+
+                        android:text="0"
                         android:id="@+id/leiji"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -75,12 +78,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
+                    android:gravity="center_horizontal"
 
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:paddingRight="14dp"
                         android:layout_height="wrap_content"
+                        android:text="0"
                         android:id="@+id/keyong"/>
                     <TextView
                         android:layout_width="wrap_content"

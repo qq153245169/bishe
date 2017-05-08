@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.activity.AboutActivity;
 import com.example.liangjie06.zuche.bean.Account;
+import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.fragment.BaseFragment;
 import com.example.liangjie06.zuche.module.bankaccount.BankAccountActivity;
@@ -43,9 +44,14 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
-                    calculateJF();
+                    if(!TextUtils.isEmpty(backCardId)){
+                        String str = backCardId.substring(4, backCardId.length() - 4);
+                        String newStr = backCardId.replace(str, " **** ");
+                        tvBankCardID.setText(newStr);
+                    }
                     break;
                 case 1:
+                    calculateJF();
                     break;
             }
         }
@@ -65,8 +71,8 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     private LinearLayout llAbout;
     private LinearLayout llPhone;
     private String backCardId;
-    private int jiFen;
-    private float yuE;
+    private float curJiFen;
+    private float allJiFen;
     private ImageView imgHYDJIcon;
     private ImageView imgHYIcon;
     private TextView tvHuiYuan;
@@ -160,6 +166,28 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         ThreadPool.runOnPool(new Runnable() {
             @Override
             public void run() {
+
+                final Message msg = Message.obtain();
+                BmobQuery<JiFen> jiFenBmobQuery = new BmobQuery<JiFen>();
+                jiFenBmobQuery.addWhereEqualTo("userName", myUser.getUsername())
+                        .findObjects(new FindListener<JiFen>() {
+                            @Override
+                            public void done(List<JiFen> list, BmobException e) {
+                                if (e == null) {
+                                    if (list.size() > 0) {
+                                        curJiFen = list.get(0).getCurJifen();
+                                        allJiFen = list.get(0).getJiFen();
+                                        msg.what = 1;
+                                        mHandler.sendEmptyMessage(msg.what);
+                                    }else {
+                                        Log.e("lj","积分没有查到");
+                                    }
+                                }else {
+                                    Log.e("lj","chaxunshibai   积分没有查到");
+                                }
+                            }
+                        });
+
                 BmobQuery<Account> accountBmobQuery = new BmobQuery<Account>();
                 accountBmobQuery.addWhereEqualTo("userName",myUser.getUsername());
                 accountBmobQuery.setLimit(3);
@@ -170,11 +198,9 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                             if (list.size()>0){
                                 Account account = list.get(0);
                                 backCardId = account.getBankCard();
-                                jiFen = myUser.getJiFen();
                                 Message msg= Message.obtain();
                                 msg.what = 0;
-                                Log.e("lj",backCardId +"   "+
-                                        jiFen + "   "+yuE);
+                                Log.e("lj",backCardId);
                                 mHandler.sendEmptyMessage(msg.what);
                             }else {
                                 Log.e("lj", "查询到account是空的"+list.size());
@@ -194,31 +220,27 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void calculateJF(){
-        if(!TextUtils.isEmpty(backCardId)){
-            String str = backCardId.substring(4, backCardId.length() - 4);
-            String newStr = backCardId.replace(str, " **** ");
-            tvBankCardID.setText(newStr);
-        }
-        tvJifen.setText(jiFen+"");
-        if(jiFen>=50 && jiFen<200){
+
+        tvJifen.setText(allJiFen+"");
+        if(allJiFen>=50 && allJiFen<200){
             tvHuiYuanDJ.setText("银卡会员");
             tvHuiYuan.setText("银卡会员");
             tvHY.setText("98");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_silver);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card_silver);
-        }else if (jiFen>= 200&&jiFen<500){
+        }else if (allJiFen>= 200&&allJiFen<500){
             tvHuiYuanDJ.setText("黄金会员");
             tvHuiYuan.setText("黄金会员");
             tvHY.setText("95");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card);
-        }else if(jiFen >=500&&jiFen<1000){
+        }else if(allJiFen >=500&&allJiFen<1000){
             tvHuiYuanDJ.setText("铂金会员");
             tvHuiYuan.setText("铂金会员");
             tvHY.setText("92");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_normal);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card_normal);
-        }else if (jiFen>=1000) {
+        }else if (allJiFen>=1000) {
             tvHuiYuanDJ.setText("钻石会员");
             tvHuiYuan.setText("钻石会员");
             tvHY.setText("88");

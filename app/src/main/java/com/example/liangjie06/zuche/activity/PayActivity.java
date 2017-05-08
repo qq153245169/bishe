@@ -7,10 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +25,8 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.http.bean.Init;
 import cn.bmob.v3.listener.FindListener;
+
+import static com.baidu.location.h.g.al;
 
 
 /**
@@ -108,6 +107,8 @@ public class PayActivity extends FragmentActivity {
         String temp = str.substring(3,str.length()-4 );
         String newStr = str.replace(temp, "****");
         id.setText(newStr);
+        Log.e("lj","allmoney"+allMoney);
+        money.setText(""+allMoney);
         llcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -51,7 +51,7 @@ public class UseingOrderFragment extends Fragment {
         }
     };
 
-    private ArrayList<Order> carList;
+    private ArrayList<Order> carList = new ArrayList<Order>();
     private ListView listView;
     private CarAdapter mAdapter;
     private SelectActivity mActivity;
@@ -99,7 +99,8 @@ public class UseingOrderFragment extends Fragment {
                             public void done(List<Order> list, BmobException e) {
                                 if (e == null) {
                                     for (Order o : list) {
-                                        if (o.getPay() && TimeUtils.getDay(o.getTimeTo()) <= TimeUtils.getDay(System.currentTimeMillis())) {
+                                        if (!o.getComplete() && o.getPay()
+                                                && TimeUtils.getDay(o.getTimeTo()) > TimeUtils.getDay(System.currentTimeMillis())) {
                                             carList.add(o);
                                         }
                                     }
@@ -168,7 +169,7 @@ public class UseingOrderFragment extends Fragment {
             viewHoder.tvGetTime.setText(TimeUtils.getDateToYMD(carList.get(position).getTimeFrom()));
             viewHoder.tvReturnTime.setText(TimeUtils.getDateToYMD(carList.get(position).getTimeTo()));
 
-            viewHoder.tvState.setText("已完成");
+            viewHoder.tvState.setText("使用中");
             return convertView;
         }
     }

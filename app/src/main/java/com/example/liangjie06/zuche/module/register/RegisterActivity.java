@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.utils.PrefUtils;
 
@@ -94,6 +95,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         if(v.getId() == R.id.btn_register){
             Register();
+            finish();
         }
     }
 
@@ -158,6 +160,19 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
                     Log.e("lj","chengg"+e.toString());
                 }
 
+            }
+        });
+
+        JiFen jiFen = new JiFen();
+        jiFen.setUserName(phoneNum);
+        jiFen.setJiFen(0f);
+        jiFen.setCurJifen(0f);
+        jiFen.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null){
+
+                }
             }
         });
 

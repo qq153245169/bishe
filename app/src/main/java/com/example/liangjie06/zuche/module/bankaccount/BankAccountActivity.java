@@ -107,7 +107,8 @@ public class BankAccountActivity extends Activity  {
             public void run() {
                 User user = BmobUser.getCurrentUser(User.class);
                 BmobQuery<Account> accountBmobQuery = new BmobQuery<Account>();
-                accountBmobQuery.addWhereEqualTo("userName",user.getUsername()).findObjects(new FindListener<Account>() {
+                accountBmobQuery.addWhereEqualTo("userName",user.getUsername())
+                        .findObjects(new FindListener<Account>() {
                     @Override
                     public void done(List<Account> list, BmobException e) {
                         if (e == null){

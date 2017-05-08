@@ -78,7 +78,7 @@ public class FirstFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 JiaoYiActivity.startActivity(getActivity(), mActivity.getPart, mActivity.retPart,
-                        mActivity.getTime, mActivity.retTime, mActivity.dayCount, carList.get(position));
+                        mActivity.getTime, mActivity.retTime, mActivity.dayCount, carList.get(position),"ff");
             }
         });
 

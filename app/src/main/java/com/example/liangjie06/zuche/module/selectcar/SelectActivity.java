@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.module.selectcar.adapter.MyFragmentPagerAdapter;
 import com.example.liangjie06.zuche.module.selectcar.fragment.FirstFragment;
+import com.example.liangjie06.zuche.module.selectcar.fragment.FiveFragment;
 import com.example.liangjie06.zuche.module.selectcar.fragment.FourFragment;
 import com.example.liangjie06.zuche.module.selectcar.fragment.SecondFragment;
 import com.example.liangjie06.zuche.module.selectcar.fragment.ThridFragment;
@@ -38,6 +39,7 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
     private TextView btn_second;
     private TextView btn_third;
     private TextView btn_four;
+    private TextView btn_suv;
     //作为指示标签的按钮
     private ImageView cursor;
     //标志指示标签的横坐标
@@ -49,12 +51,12 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
 
     public String getPart;
     public String retPart;
-    public String getTime;
-    public String retTime;
+    public long getTime;
+    public long retTime;
     public int dayCount;
 
     public static void startActivity(Context context, String getPart, String retPart,
-                                     String getTime, String retrunTime, int day) {
+                                     Long getTime, Long retrunTime, int day) {
         Intent intent = new Intent(context, SelectActivity.class);
         intent.putExtra("getP", getPart);
         intent.putExtra("retP", retPart);
@@ -70,8 +72,8 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
         setContentView(R.layout.select_car);
         getPart = getIntent().getStringExtra("getP");
         retPart = getIntent().getStringExtra("retP");
-        getTime = getIntent().getStringExtra("getT");
-        retTime = getIntent().getStringExtra("retT");
+        getTime = getIntent().getLongExtra("getT",0);
+        retTime = getIntent().getLongExtra("retT",0);
         dayCount = getIntent().getIntExtra("day", 2);
         initView();
     }
@@ -83,7 +85,8 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
         btn_second = (TextView) this.findViewById(R.id.btn_second);
         btn_third = (TextView) this.findViewById(R.id.btn_third);
         btn_four = (TextView) this.findViewById(R.id.btn_four);
-        btnArgs = new TextView[]{btn_first, btn_second, btn_third, btn_four};
+        btn_suv = (TextView) findViewById(R.id.btn_suv);
+        btnArgs = new TextView[]{btn_first, btn_second, btn_third, btn_four, btn_suv};
 
         cursor = (ImageView) this.findViewById(R.id.cursor_btn);
         cursor.setBackgroundColor(Color.RED);
@@ -104,12 +107,14 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
         btn_second.setOnClickListener(this);
         btn_third.setOnClickListener(this);
         btn_four.setOnClickListener(this);
+        btn_suv.setOnClickListener(this);
 
         fragments = new ArrayList<Fragment>();
         fragments.add(new FirstFragment());
         fragments.add(new SecondFragment());
         fragments.add(new ThridFragment());
         fragments.add(new FourFragment());
+        fragments.add(new FiveFragment());
 
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         myviewpager.setAdapter(adapter);
@@ -125,6 +130,8 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
         btn_second.setBackgroundColor(Color.parseColor("#DCDCDC"));
         btn_third.setBackgroundColor(Color.parseColor("#DCDCDC"));
         btn_four.setBackgroundColor(Color.parseColor("#DCDCDC"));
+        btn_suv.setBackgroundColor(Color.parseColor("#DCDCDC"));
+        btn_suv.setTextColor(Color.BLACK);
         btn_first.setTextColor(Color.BLACK);
         btn_second.setTextColor(Color.BLACK);
         btn_third.setTextColor(Color.BLACK);
@@ -156,6 +163,11 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
                 cursorAnim(3);
 
                 break;
+            case R.id.btn_suv:
+                myviewpager.setCurrentItem(4);
+                cursorAnim(4);
+
+                break;
         }
     }
 
@@ -178,7 +190,8 @@ public class SelectActivity extends FragmentActivity implements OnClickListener,
             widthArgs = new int[]{btn_first.getWidth(),
                     btn_second.getWidth(),
                     btn_third.getWidth(),
-                    btn_four.getWidth()};
+                    btn_four.getWidth(),
+                    btn_suv.getWidth()};
         }
         //每次滑动首先重置所有按钮的颜色
         resetButtonColor();

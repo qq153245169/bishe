@@ -65,9 +65,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         if (v.getId() == R.id.tv_register) {
             RegisterActivity.startRegisterActivity(mContext);
+            finish();
         }
         if (v.getId() == R.id.btn_login) {
             login();
+            finish();
         }
         if (v.getId() == R.id.tv_forget) {
 

@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <TextView 
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="这是第四个Fragment"/>
+
+    <ListView
+        android:id="@+id/list_car"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#00000000"
+        android:dividerHeight="18dp">
+
+    </ListView>
     
 
 </LinearLayout>

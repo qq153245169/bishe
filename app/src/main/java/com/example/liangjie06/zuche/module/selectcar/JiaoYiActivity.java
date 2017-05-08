@@ -3,27 +3,38 @@ package com.example.liangjie06.zuche.module.selectcar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.activity.PayActivity;
-import com.example.liangjie06.zuche.activity.SelectBankCardActivity;
 import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.bean.Car;
+import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.Order;
 import com.example.liangjie06.zuche.bean.User;
+import com.example.liangjie06.zuche.module.register.LoginActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
+import com.example.liangjie06.zuche.utils.TimeUtils;
 
+import java.util.List;
+import java.util.Random;
+
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by liangjie06 on 17/4/23.
@@ -31,10 +42,23 @@ import cn.bmob.v3.listener.SaveListener;
 
 public class JiaoYiActivity extends BaseActivity {
 
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1){
+                tvJifen.setText(curJiFen+"");
+                Log.e("lj","woshijifen"+curJiFen);
+            }else {
+                tvJifen.setText(0+"");
+            }
+        }
+    };
+
     public String getPart;
     public String retPart;
-    public String getTime;
-    public String retTime;
+    public long getTime;
+    public long retTime;
     public int dayCount;
 
     public ImageView ivCar;
@@ -56,8 +80,16 @@ public class JiaoYiActivity extends BaseActivity {
     private User myUser;
     private Account account;
     private Car car;
+    private float curJiFen;
+    private float money;
+    private boolean hasChecked;
+    private String objectId;
+    private float allJifen;
+    private String mFrom;
+    private Order mOrder;
+
     public static void startActivity(Context context, String getPart, String retPart,
-                                     String getTime, String retrunTime, int day, Car car) {
+                                     Long getTime, Long retrunTime, int day, Car car, String from) {
         Intent intent = new Intent(context, JiaoYiActivity.class);
         intent.putExtra("getP", getPart);
         intent.putExtra("retP", retPart);
@@ -65,9 +97,21 @@ public class JiaoYiActivity extends BaseActivity {
         intent.putExtra("retT", retrunTime);
         intent.putExtra("day", day);
         intent.putExtra("car", car);
+        intent.putExtra("from", from);
         context.startActivity(intent);
     }
-
+    public static void startActivityFromOrder(Context context, String getPart, String retPart,
+                                     Long getTime, Long retrunTime, int day, Order car, String from) {
+        Intent intent = new Intent(context, JiaoYiActivity.class);
+        intent.putExtra("getP", getPart);
+        intent.putExtra("retP", retPart);
+        intent.putExtra("getT", getTime);
+        intent.putExtra("retT", retrunTime);
+        intent.putExtra("day", day);
+        intent.putExtra("car", car);
+        intent.putExtra("from", from);
+        context.startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,13 +120,28 @@ public class JiaoYiActivity extends BaseActivity {
 
         getPart = getIntent().getStringExtra("getP");
         retPart = getIntent().getStringExtra("retP");
-        getTime = getIntent().getStringExtra("getT");
-        retTime = getIntent().getStringExtra("retT");
+        getTime = getIntent().getLongExtra("getT",0);
+        retTime = getIntent().getLongExtra("retT",0);
         dayCount = getIntent().getIntExtra("day", 2);
-        car = (Car) getIntent().getSerializableExtra("car");
+        mFrom = getIntent().getStringExtra("from");
+        if (mFrom.equals("dingdan")){
+            mOrder = (Order) getIntent().getSerializableExtra("car");
+
+        }else {
+            car = (Car) getIntent().getSerializableExtra("car");
+
+        }
+        getJiFen();
 
         initView();
         initData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        myUser = BmobUser.getCurrentUser(User.class);
+
     }
 
     private void initView(){
@@ -106,60 +165,160 @@ public class JiaoYiActivity extends BaseActivity {
         btnCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getApplication(),PayActivity.class);
-                intent.putExtra("money", car.getPrice() * dayCount);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                startActivityForResult(intent,10);
+                if (myUser == null){
+                    LoginActivity.startLoginActivity(mContext);
+                }else {
+                    Intent intent = new Intent(getApplication(),PayActivity.class);
+                    intent.putExtra("money", money);
+                    Log.e("lj","allmoney jioayi "+money);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                    startActivityForResult(intent,10);
+                }
             }
         });
     }
 
     private void initData(){
-        tvGetT.setText(getTime);
+        tvGetT.setText(TimeUtils.getDateToYMD(getTime));
         tvGetp.setText(getPart);
-        tvRetT.setText(retTime);
+        tvRetT.setText(TimeUtils.getDateToYMD(retTime));
         tvRetP.setText(retPart);
         tvDayCount.setText(dayCount+"");
-        tvMoney.setText(car.getPrice() * dayCount+"");
-        Glide.with(mContext).load(car.getIcon().getUrl()).placeholder(R.drawable.car_image).into(ivCar);
-        //tvJifen.setText(myUser.getJiFen());
-        tvCarName.setText(car.getCarName());
-        tvCarDesc.setText(car.getXiangShu() + "｜" +
-                car.getPaiLiang() + "｜" + car.getChengZuo());
-        tvPrice.setText(car.getPrice()+"");
+        if (mFrom.equals("dingdan")){
+            money = mOrder.getAllMoney();
+            Glide.with(mContext).load(mOrder.getIcon()).placeholder(R.drawable.car_image).into(ivCar);
+            //tvJifen.setText(myUser.getJiFen());
+            tvCarName.setText(mOrder.getCarName());
+            tvCarDesc.setText(mOrder.getXiangShu() + "｜" +
+                    mOrder.getPaiLiang() + "｜" + mOrder.getChengZuo());
+            tvPrice.setText(mOrder.getDayMoney()+"");
+        }else {
+            money = car.getPrice() * dayCount;
+            Glide.with(mContext).load(car.getIcon().getUrl()).placeholder(R.drawable.car_image).into(ivCar);
+            //tvJifen.setText(myUser.getJiFen());
+            tvCarName.setText(car.getCarName());
+            tvCarDesc.setText(car.getXiangShu() + "｜" +
+                    car.getPaiLiang() + "｜" + car.getChengZuo());
+            tvPrice.setText(car.getPrice()+"");
+        }
+        tvMoney.setText(money +"");
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    hasChecked = isChecked;
+                    money = money - curJiFen /10;
+                    tvMoney.setText(money +"");
+                }else {
+                    money = money + curJiFen /10;
+                    tvMoney.setText(money +"");
+                }
+                Log.e("lj","isChecked" +isChecked);
+
+            }
+        });
+
     }
 
-    private void updateInfo(final boolean isComplete, final boolean isPay){
+    private void updateInfo(final boolean isComplete, final boolean isPay, final boolean isChecked){
         ThreadPool.runOnPool(new Runnable() {
             @Override
             public void run() {
-                Order order = new Order();
-                order.setUserName(myUser.getUsername());
-                order.setOrderId(System.currentTimeMillis());
-                order.setCarName(car.getCarName());
-                order.setDay(dayCount);
-                order.setPartFrom(getPart);
-                order.setPartTo(retPart);
-                order.setTimeFrom(getTime);
-                order.setTimeTo(retTime);
-                order.setDayMoney(car.getPrice());
-                order.setAllMoney(car.getPrice() * dayCount);
-                order.setComplete(isComplete);
-                order.setPay(isPay);
-                order.setDelay(false);
-                order.save(new SaveListener<String>() {
-                    @Override
-                    public void done(String s, BmobException e) {
-                        if (e == null){
-                            Log.e("lj","订单提交成功");
-                        }else {
-                            Log.e("lj","订单提交失败"+e.toString());
-                        }
+                if (isPay) {
+                    JiFen jiFen = new JiFen();
+                    jiFen.setJiFen( (allJifen + money /100));
+                    jiFen.setCurJifen(curJiFen + money /100);
+                    if(isChecked){
+                        jiFen.setCurJifen(money / 100);
+
                     }
-                });
+                    jiFen.update(objectId, new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null){
+                                Log.e("lj", "积分更新成功");
+                            }else {
+                                Log.e("lj", "积分更新shibai");
+
+                            }
+                        }
+                    });
+                }
+
+                Order order = new Order();
+                if (mFrom.equals("dingdan")){
+                    order.setValue("isPay",true);
+                    order.update(mOrder.getObjectId(), new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+
+                        }
+                    });
+                }else {
+                    order.setUserName(myUser.getUsername());
+                    order.setOrderId(System.currentTimeMillis());
+                    order.setCarName(car.getCarName());
+                    order.setDay(dayCount);
+                    order.setPartFrom(getPart);
+                    order.setPartTo(retPart);
+                    order.setTimeFrom(getTime);
+                    order.setTimeTo(retTime);
+                    order.setDayMoney(car.getPrice());
+                    order.setAllMoney(car.getPrice() * dayCount);
+                    order.setComplete(isComplete);
+                    order.setPay(isPay);
+                    order.setDelay(false);
+                    order.setOrderId(System.currentTimeMillis()* (1 + new Random().nextInt(8)));
+                    order.setChengZuo(car.getChengZuo());
+                    order.setPaiLiang(car.getPaiLiang());
+                    order.setXiangShu(car.getXiangShu());
+                    order.setIcon(car.getIcon().getUrl());
+                    order.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if (e == null){
+                                Log.e("lj","订单提交成功");
+                            }else {
+                                Log.e("lj","订单提交失败"+e.toString());
+                            }
+                        }
+                    });
+                }
+
             }
         });
+    }
+
+    private void getJiFen(){
+        final Message msg = Message.obtain();
+        if (myUser != null){
+            BmobQuery<JiFen> jiFenBmobQuery = new BmobQuery<JiFen>();
+            jiFenBmobQuery.addWhereEqualTo("userName", myUser.getUsername())
+                    .findObjects(new FindListener<JiFen>() {
+                        @Override
+                        public void done(List<JiFen> list, BmobException e) {
+                            if (e == null) {
+                                if (list.size() > 0) {
+                                    curJiFen = list.get(0).getCurJifen();
+                                    allJifen = list.get(0).getJiFen();
+                                    objectId = list.get(0).getObjectId();
+                                    msg.what = 1;
+                                    mHandler.sendEmptyMessage(msg.what);
+                                    Log.e("lj","积分查到"+list.get(0).getCurJifen() +"    "+list.get(0).getJiFen());
+                                }else {
+                                    Log.e("lj","积分没有查到");
+                                }
+                            }else {
+                                Log.e("lj","chaxunshibai   积分没有查到");
+                            }
+                        }
+                    });
+        }else {
+            msg.what = 2;
+            mHandler.sendEmptyMessage(msg.what);
+
+        }
+
     }
 
     @Override
@@ -167,10 +326,12 @@ public class JiaoYiActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 1){
             Log.e("lj","提交支付了");
-            updateInfo(false, true);
+            updateInfo(false, true, hasChecked);
+            finish();
         }else {
-            updateInfo(false,false);
+            updateInfo(false,false, hasChecked);
             Log.e("lj","订单未支付，直接推出了");
+            finish();
         }
     }
 

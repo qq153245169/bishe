@@ -45,6 +45,15 @@
             android:textSize="14sp"
             android:text="豪华型"/>
 
+        <TextView
+            android:id="@+id/btn_suv"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="SUV"/>
+
 
     </LinearLayout>
     <LinearLayout

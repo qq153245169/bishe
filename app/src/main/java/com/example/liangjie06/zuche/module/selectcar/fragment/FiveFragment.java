@@ -63,7 +63,7 @@ public class FiveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        View v = inflater.inflate(R.layout.layout_second, container, false);
+        View v = inflater.inflate(R.layout.layout_suv, container, false);
         listView = (ListView) v.findViewById(R.id.list_car);
         return v;
     }
@@ -78,7 +78,7 @@ public class FiveFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 JiaoYiActivity.startActivity(getActivity(), mActivity.getPart, mActivity.retPart,
-                        mActivity.getTime, mActivity.retTime, mActivity.dayCount, carList.get(position));
+                        mActivity.getTime, mActivity.retTime, mActivity.dayCount, carList.get(position),"ff");
             }
         });
 
