@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 
 
 /**
  * Created by Jack-Liang on 2017/3/5.
  */
-public class SearchActivity extends Activity {
+public class SearchActivity extends BaseActivity {
     public static void startActivity(Context context){
         Intent intent = new Intent(context,SearchActivity.class);
         context.startActivity(intent);

@@ -11,6 +11,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.utils.PrefUtils;
 
 /**

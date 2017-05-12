@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.module.gostore.GoStoreActivity;
 import com.example.liangjie06.zuche.view.hotcity.adapter.CityListAdapter;
 import com.example.liangjie06.zuche.view.hotcity.adapter.SearchResultAdapter;
@@ -36,7 +37,7 @@ import java.util.List;
  * Created by liangjie06 on 17/4/13.
  */
 
-public class CityListActivity extends Activity {
+public class CityListActivity extends BaseActivity {
 
     protected static final String TAG = "MainActivity";
     private MyLetterView myLetterView;//自定义的View

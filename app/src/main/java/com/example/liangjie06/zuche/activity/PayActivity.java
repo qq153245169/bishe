@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.utils.ThreadPool;
@@ -32,7 +33,7 @@ import static com.baidu.location.h.g.al;
 /**
  * 通用Activity,用于加载Fragment。
  */
-public class PayActivity extends FragmentActivity {
+public class PayActivity extends BaseActivity {
 
     private TextView id;
     private TextView money;

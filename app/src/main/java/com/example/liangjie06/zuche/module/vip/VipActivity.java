@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.utils.ThreadPool;
@@ -26,7 +27,7 @@ import cn.bmob.v3.listener.FindListener;
  * Created by liangjie06 on 17/4/22.
  */
 
-public class VipActivity extends Activity {
+public class VipActivity extends BaseActivity {
 
     private Handler mHandler = new Handler() {
         @Override

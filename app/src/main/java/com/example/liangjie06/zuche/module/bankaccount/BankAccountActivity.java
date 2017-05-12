@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.utils.ThreadPool;
@@ -37,7 +38,7 @@ import cn.bmob.v3.listener.UpdateListener;
  * Created by liangjie06 on 17/4/21.
  */
 
-public class BankAccountActivity extends Activity  {
+public class BankAccountActivity extends BaseActivity {
 
     private final static String TAG = "BankAccountActivity";
 

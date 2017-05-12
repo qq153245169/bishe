@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.module.selectcar.adapter.MyFragmentPagerAdapter;
 import com.example.liangjie06.zuche.module.selectcar.fragment.FirstFragment;
 import com.example.liangjie06.zuche.module.selectcar.fragment.FiveFragment;
@@ -29,7 +30,7 @@ import com.example.liangjie06.zuche.module.selectcar.fragment.ThridFragment;
  * @author IT_ZJYANG
  *         ViewPager+fragment实现滑动切换子页面
  */
-public class SelectActivity extends FragmentActivity implements OnClickListener, OnPageChangeListener {
+public class SelectActivity extends BaseActivity implements OnClickListener, OnPageChangeListener {
 
     private ViewPager myviewpager;
     //fragment的集合，对应每个子页面

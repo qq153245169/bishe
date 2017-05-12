@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
+            android:paddingRight="14dp"
             android:id="@+id/tv_name" />
 
     </LinearLayout>
@@ -52,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
+            android:paddingRight="14dp"
             android:id="@+id/tv_sex" />
 
     </LinearLayout>
@@ -81,13 +83,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
+            android:paddingRight="14dp"
             android:text="普通卡"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="4dp"
-            android:src="@drawable/base_cridetcard_arrow"/>
+
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -117,13 +115,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#AAAAAA"
+            android:id="@+id/tv_phone"
+            android:paddingRight="14dp"
             android:textSize="13sp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="4dp"
-            android:src="@drawable/base_cridetcard_arrow"/>
+
     </LinearLayout>
     <View
         android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -20,7 +21,7 @@ import cn.bmob.v3.listener.UpdateListener;
  * Created by liangjie06 on 17/4/22.
  */
 
-public class ChangePwdActivity extends Activity {
+public class ChangePwdActivity extends BaseActivity {
 
     private Context mContext;
 

@@ -1,8 +1,10 @@
 package com.example.liangjie06.zuche.module.mainpager;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -78,6 +80,14 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     private TextView tvHuiYuan;
     private User myUser;
     private View view;
+    private boolean isCreate;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        isCreate = true;
+        Log.e("lj", "Person  onCreate" + isCreate);
+    }
 
     @Override
     protected void initData() {
@@ -90,9 +100,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
 
         myUser =  BmobUser.getCurrentUser(User.class);
         if (myUser == null){
-            Intent intent = new Intent(mActivity, LoginActivity.class);
-            mActivity.startActivityForResult(intent, 10);
-
+            LoginActivity.startLoginActivity(mActivity);
         }else {
             Log.e("lj", "dengluchengg"+ myUser.getObjectId() + "name"+myUser.getUsername());
             preView();
@@ -169,6 +177,9 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
 
                 final Message msg = Message.obtain();
                 BmobQuery<JiFen> jiFenBmobQuery = new BmobQuery<JiFen>();
+                if (myUser == null){
+                    return;
+                }
                 jiFenBmobQuery.addWhereEqualTo("userName", myUser.getUsername())
                         .findObjects(new FindListener<JiFen>() {
                             @Override
@@ -248,4 +259,17 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card_diamond);
         }
     }
+
+    /*@Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isCreate) {
+            Log.e("lj", "PersonHint");
+
+            initView();
+            initData();
+        }else {
+            Log.e("lj", "Person   isVisibleToUser:"+isVisibleToUser + "   " + "isCreate:" +isCreate);
+        }
+    }*/
 }

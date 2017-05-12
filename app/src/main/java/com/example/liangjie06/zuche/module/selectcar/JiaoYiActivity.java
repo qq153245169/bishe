@@ -256,7 +256,7 @@ public class JiaoYiActivity extends BaseActivity {
                     });
                 }else {
                     order.setUserName(myUser.getUsername());
-                    order.setOrderId(System.currentTimeMillis());
+                    order.setOrderId(System.currentTimeMillis() * 3);
                     order.setCarName(car.getCarName());
                     order.setDay(dayCount);
                     order.setPartFrom(getPart);
@@ -268,7 +268,6 @@ public class JiaoYiActivity extends BaseActivity {
                     order.setComplete(isComplete);
                     order.setPay(isPay);
                     order.setDelay(false);
-                    order.setOrderId(System.currentTimeMillis()* (1 + new Random().nextInt(8)));
                     order.setChengZuo(car.getChengZuo());
                     order.setPaiLiang(car.getPaiLiang());
                     order.setXiangShu(car.getXiangShu());

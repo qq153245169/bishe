@@ -1,6 +1,8 @@
 package com.example.liangjie06.zuche.module.mainpager;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -51,9 +53,18 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
     //所有按钮的集合
     private TextView[] btnArgs;
 
+    private boolean isCreate;
+
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        isCreate = true;
+        Log.e("lj", "Order  onCreate" + isCreate);
     }
 
     @Override
@@ -206,4 +217,15 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
 
         }
     }
+
+    /*@Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && isCreate) {
+            Log.e("lj", "Order  Hint");
+           initView();
+        } else {
+            Log.e("lj", "Order   isVisibleToUser:"+isVisibleToUser + "   " + "isCreate:" +isCreate);
+        }
+    }*/
 }

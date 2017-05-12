@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.utils.PrefUtils;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by Jack-Liang on 2016/8/22.
  */
-public class GuideActivity extends Activity {
+public class GuideActivity extends BaseActivity {
     private ViewPager mViewPager;
     private LinearLayout ll_container;
     private ImageView iv_red_point;

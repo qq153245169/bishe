@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 
 
 /**
  * Created by Jack-Liang on 2017/3/5.
  */
-public class DiscountActivity extends Activity {
+public class DiscountActivity extends BaseActivity {
     public static void startActivity(Context context){
         Intent intent = new Intent(context,DiscountActivity.class);
         context.startActivity(intent);

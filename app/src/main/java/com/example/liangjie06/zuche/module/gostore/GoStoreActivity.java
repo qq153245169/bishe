@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.global.TimePickGlobal;
 import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.module.selectcar.view.PartSelect;
@@ -37,7 +38,7 @@ import static com.baidu.location.h.g.m;
 /**
  * Created by Jack-Liang on 2017/3/5.
  */
-public class GoStoreActivity extends AppCompatActivity implements View.OnClickListener{
+public class GoStoreActivity extends BaseActivity implements View.OnClickListener{
 
     private SimpleDateFormat sf = new SimpleDateFormat("MM-dd", Locale.ENGLISH);
     private long mLastTime = System.currentTimeMillis(); // 上次设置的时间
@@ -179,8 +180,8 @@ public class GoStoreActivity extends AppCompatActivity implements View.OnClickLi
                 showDate(TimePickGlobal.ONE_DAY);
                 break;
             case R.id.go_strore_to_selctor_car:
-                String getStr = mPart1.getPartDesc() + mPart2.getHeight();
-                String returnStr = mPart3.getPartDesc() + mPart4.getHeight();
+                String getStr = mPart1.getPartDesc() + mPart2.getPartDesc();
+                String returnStr = mPart3.getPartDesc() + mPart4.getPartDesc();
                 SelectActivity.startActivity(mContext, getStr, returnStr, getTime, returnTime, dayCount);
                 break;
             case R.id.go_strore_part1:

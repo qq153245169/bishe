@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.liangjie06.zuche.base.BaseActivity;
+
 
 /**
  * Created by Jack-Liang on 2017/3/5.
  */
-public class FreeRideActivity extends Activity {
+public class FreeRideActivity extends BaseActivity {
     public static void startActivity(Context context){
         Intent intent = new Intent(context,FreeRideActivity.class);
         context.startActivity(intent);

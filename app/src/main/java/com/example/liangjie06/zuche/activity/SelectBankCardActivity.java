@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.module.bankaccount.BankAccountActivity;
 import com.example.liangjie06.zuche.view.hotcity.CityListActivity;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  * Created by liangjie06 on 17/4/23.
  */
 
-public class SelectBankCardActivity extends FragmentActivity {
+public class SelectBankCardActivity extends BaseActivity {
 
 
     private ArrayList<Account> bankList;

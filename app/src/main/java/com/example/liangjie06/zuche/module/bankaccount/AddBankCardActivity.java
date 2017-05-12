@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.utils.ThreadPool;
@@ -27,7 +28,7 @@ import cn.bmob.v3.listener.SaveListener;
  * Created by liangjie06 on 17/4/21.
  */
 
-public class AddBankCardActivity extends Activity {
+public class AddBankCardActivity extends BaseActivity {
 
     private Handler mHandler = new Handler(){
         @Override

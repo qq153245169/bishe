@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.utils.PrefUtils;
@@ -26,7 +27,7 @@ import cn.bmob.v3.listener.SaveListener;
  * Created by liangjie06 on 17/4/16.
  */
 
-public class RegisterActivity extends Activity implements View.OnClickListener{
+public class RegisterActivity extends BaseActivity implements View.OnClickListener{
 
     private User mUser;
     private EditText mEtPhoneNum;
@@ -75,9 +76,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
                 if (checkedId == R.id.rd_man){
                     isMan = true;
                     isSetSex = true;
+                    Log.e("lj","isMan");
                 }else {
                     isMan = false;
                     isSetSex = true;
+                    Log.e("lj","isNotMan");
                 }
             }
         });
@@ -171,7 +174,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
             @Override
             public void done(String s, BmobException e) {
                 if (e == null){
-
+                    finish();
                 }
             }
         });

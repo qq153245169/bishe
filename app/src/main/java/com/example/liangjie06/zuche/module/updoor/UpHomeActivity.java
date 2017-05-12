@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.liangjie06.zuche.R;
+import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.global.TimePickGlobal;
 import com.example.liangjie06.zuche.module.selectcar.view.PartSelect;
 import com.example.liangjie06.zuche.module.selectcar.view.TimeSelect;
@@ -26,7 +27,7 @@ import java.util.Locale;
 /**
  * Created by Jack-Liang on 2017/3/5.
  */
-public class UpHomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class UpHomeActivity extends BaseActivity implements View.OnClickListener{
 
     private SimpleDateFormat sf = new SimpleDateFormat("MM-dd", Locale.ENGLISH);
     private long mLastTime = System.currentTimeMillis(); // 上次设置的时间
