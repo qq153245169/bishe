@@ -27,7 +27,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.http.bean.Init;
 import cn.bmob.v3.listener.FindListener;
 
-import static com.baidu.location.h.g.al;
 
 
 /**

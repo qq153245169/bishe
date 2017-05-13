@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="e0d8c1e3219818f42654e51a09ea4c728314029e">
+        sha1="ed549c84968fb00f9d47164e90cdf77468a09942">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_bab2765f402d6659da6e7084be4ab549318c1abd/classes.dex" />
     </item>
     <item
@@ -79,8 +79,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="c86897df866f3f7a74ca6b497d5c46c0355effd3">
+        sha1="3a77e277fe238a88f3d272b88deb08c9b02a8a77">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7610a60b3b42ab9a334765d74830e855d134ac32/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/libs/AMap_Location_V3.4.0_20170427.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa2675ac2111742d045390a97dd39ea48d957b87">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/AMap_Location_V3.4.0_20170427_1aeb946e13db65081ad96a4a1860ef2c73cc4d89/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,30 +102,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/libs/BaiduLBS_Android.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5dd834700790bb2b53f6bbb2ccd74b139cd19851">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/BaiduLBS_Android_3842c850dc1a3fe16190e65531d128213e65907c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_aa3ed7d51ff4e2104ef1bcc0e11752e834dbd663/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/libs/httpmime-4.1.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ed8b5ee0167cb27dea55851259eb34b609f31df0">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/httpmime-4.1.2_4abed5a96afbd6cb669a5d3af7994aaa15e8b1a1/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -162,15 +153,6 @@
         revision="25.0.2"
         sha1="bbeca71da43c8f4bc9ceedec002060f53437ad26">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.7.0_05447da7c0907f403e3f10ab945be24aeccee2ab/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/libs/IndoorscapeAlbumPlugin.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f4ac7ae5070911d02290331664a36475fb9a5ebb">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/IndoorscapeAlbumPlugin_c9861530ebe9847d85cb0a7637479344d2292722/classes.dex" />
     </item>
     <item
         is-multidex="true"

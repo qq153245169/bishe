@@ -7,11 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 
-import com.example.liangjie06.zuche.R;
-
-import static com.baidu.location.h.g.R;
 
 /**
  * Created by liangjie06 on 17/4/22.

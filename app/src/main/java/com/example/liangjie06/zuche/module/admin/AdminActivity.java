@@ -38,8 +38,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-import static com.baidu.location.h.g.g;
-import static com.baidu.location.h.g.t;
 
 
 /**

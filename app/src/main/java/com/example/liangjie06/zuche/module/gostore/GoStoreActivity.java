@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
+import com.example.liangjie06.zuche.MyApplication;
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.global.TimePickGlobal;
@@ -26,19 +28,17 @@ import com.example.liangjie06.zuche.view.datawheel.DateScrollerDialog;
 import com.example.liangjie06.zuche.view.datawheel.data.Type;
 import com.example.liangjie06.zuche.view.datawheel.listener.OnDateSetListener;
 import com.example.liangjie06.zuche.view.hotcity.CityListActivity;
+import com.example.liangjie06.zuche.view.hotcity.adapter.CityListAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import static android.R.attr.data;
-import static com.baidu.location.h.g.m;
-
 
 /**
  * Created by Jack-Liang on 2017/3/5.
  */
-public class GoStoreActivity extends BaseActivity implements View.OnClickListener{
+public class GoStoreActivity extends BaseActivity implements View.OnClickListener {
 
     private SimpleDateFormat sf = new SimpleDateFormat("MM-dd", Locale.ENGLISH);
     private long mLastTime = System.currentTimeMillis(); // 上次设置的时间
@@ -46,6 +46,8 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
     private int dayCount = 1;
     private boolean topSwitch = true;
     private boolean bottomSwitch = true;
+    public MyLocationListener myLocationListener;
+    private MyApplication mApp = MyApplication.getInstance();
 
 
     // 数据的回调
@@ -58,15 +60,15 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
                 getTime = milliseconds;
                 returnTime = milliseconds + TimePickGlobal.ONE_DAY;
                 leftDay = getDay(milliseconds);
-                Log.e("lj",leftDay + "leftDay");
-                String rightTime = getDateToString(milliseconds + TimePickGlobal.ONE_DAY );
+                Log.e("lj", leftDay + "leftDay");
+                String rightTime = getDateToString(milliseconds + TimePickGlobal.ONE_DAY);
                 mLeftTime.setGetData(text);
                 mRightTime.setGetData(rightTime);
                 mCenterTime.setTvCenterDays("1");
                 left = false;
             } else {
                 rightDay = getDay(milliseconds);
-                Log.e("lj",leftDay + "rightDay");
+                Log.e("lj", leftDay + "rightDay");
                 mRightTime.setGetData(text);
                 returnTime = milliseconds;
                 dayCount = rightDay - leftDay;
@@ -93,10 +95,11 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
     private Long returnTime = System.currentTimeMillis() + TimePickGlobal.ONE_DAY;
 
 
-    public static void startActivity(Context context){
-        Intent intent = new Intent(context,GoStoreActivity.class);
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, GoStoreActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,9 +107,10 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
         mContext = this;
         initView();
         initData();
+        initLocation();
     }
 
-    private void initView(){
+    private void initView() {
         mPart1 = (PartSelect) findViewById(R.id.go_strore_part1);
         mPart2 = (PartSelect) findViewById(R.id.go_strore_part2);
         mPart3 = (PartSelect) findViewById(R.id.go_strore_part3);
@@ -125,7 +129,7 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
     private void initData() {
         String text = getDateToString(System.currentTimeMillis());
         leftDay = getDay(System.currentTimeMillis());
-        String rightTime = getDateToString(System.currentTimeMillis() + TimePickGlobal.ONE_DAY );
+        String rightTime = getDateToString(System.currentTimeMillis() + TimePickGlobal.ONE_DAY);
         mLeftTime.setGetData(text);
         mRightTime.setGetData(rightTime);
         mCenterTime.setTvCenterDays("1");
@@ -136,13 +140,13 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
         mGetSwitch.setChangedListener(new SwitchButton.OnChangedListener() {
             @Override
             public void Onchanged(boolean isOpen) {
-                if(isOpen){
+                if (isOpen) {
                     mPart2.setPartTitleColor(R.color.partTitleColor2);
                     mPart2.setPartTitle("送车地址");
                     mPart2.setPartDesc("请选择地址");
                     topSwitch = true;
 
-                }else {
+                } else {
                     mPart2.setPartTitleColor(R.color.partTitleColor);
                     mPart2.setPartTitle("取车门店");
                     mPart2.setPartDesc("选择门店");
@@ -154,12 +158,12 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
         mReturnSwitch.setChangedListener(new SwitchButton.OnChangedListener() {
             @Override
             public void Onchanged(boolean isOpen) {
-                if(isOpen){
+                if (isOpen) {
                     bottomSwitch = true;
                     mPart4.setPartTitle("取车地址");
                     mPart4.setPartDesc("请选择地址");
                     mPart4.setPartTitleColor(R.color.partTitleColor2);
-                }else {
+                } else {
                     bottomSwitch = false;
                     mPart4.setPartTitle("还车门店");
                     mPart4.setPartDesc("选择门店");
@@ -171,7 +175,7 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.go_strore_time:
                 left = true;
                 showDate(0);
@@ -188,7 +192,7 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
                 getCityName(1);
                 break;
             case R.id.go_strore_part2:
-                if (topSwitch){
+                if (topSwitch) {
                     showDialog(mPart2);
 
                 }
@@ -197,7 +201,7 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
                 getCityName(3);
                 break;
             case R.id.go_strore_part4:
-                if (bottomSwitch){
+                if (bottomSwitch) {
                     showDialog(mPart4);
                 }
                 break;
@@ -241,7 +245,7 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
         startActivityForResult(intent, 10);
     }
 
-    private void showDialog(final PartSelect ps){
+    private void showDialog(final PartSelect ps) {
         LayoutInflater li = LayoutInflater.from(mContext);
         View promptsView = li.inflate(R.layout.dialog_input, null);
 
@@ -259,12 +263,12 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
                 .setCancelable(false)
                 .setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 // edit text
-                                if (userInput.getText() != null){
+                                if (!TextUtils.isEmpty(userInput.getText())) {
                                     ps.setPartDesc(String.valueOf(userInput.getText()));
-                                }else {
+                                } else {
                                     Toast.makeText(mContext, "请输入正确地址", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -282,24 +286,60 @@ public class GoStoreActivity extends BaseActivity implements View.OnClickListene
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bundle bundle = data.getExtras();
         String cityName = bundle.getString("city");
-            switch (resultCode){
-                case 1:
+        switch (resultCode) {
+            case 1:
 
-                    mPart1.setPartDesc(cityName);
-                    break;
-                case 2:
-                    mPart2.setPartDesc(cityName);
-                    break;
-                case 3:
-                    mPart3.setPartDesc(cityName);
-                    break;
-                case 4:
-                    mPart4.setPartDesc(cityName);
-                    break;
-                default:
-                    break;
-            }
+                mPart1.setPartDesc(cityName);
+                break;
+            case 2:
+                mPart2.setPartDesc(cityName);
+                break;
+            case 3:
+                mPart3.setPartDesc(cityName);
+                break;
+            case 4:
+                mPart4.setPartDesc(cityName);
+                break;
+            default:
+                break;
+        }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void initLocation() {
+        myLocationListener = new MyLocationListener();
+        //设置定位回调监听
+        mApp.mLocationClient.setLocationListener(myLocationListener);
+        mApp.mLocationClient.startLocation();
+    }
+
+    public class MyLocationListener implements AMapLocationListener {
+        @Override
+        public void onLocationChanged(AMapLocation aMapLocation) {
+            if (aMapLocation != null) {
+                if (aMapLocation.getErrorCode() == 0) {
+                    //可在其中解析amapLocation获取相应内容。
+                    mPart1.setPartDesc(aMapLocation.getCity());
+                    mPart2.setPartDesc(aMapLocation.getDistrict()
+                            + aMapLocation.getStreet()
+                            + aMapLocation.getStreetNum());
+                    mPart3.setPartDesc(aMapLocation.getCity());
+                    mPart4.setPartDesc(aMapLocation.getDistrict()
+                            + aMapLocation.getStreet()
+                            + aMapLocation.getStreetNum());
+                    mApp.mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
+                } else {
+                    //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                    Log.e("AmapError", "location Error, ErrCode:"
+                            + aMapLocation.getErrorCode() + ", errInfo:"
+                            + aMapLocation.getErrorInfo());
+
+
+                    return;
+                }
+            }
+        }
+
     }
 }
