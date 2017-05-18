@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -102,6 +103,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void login() {
         name = String.valueOf(mEtId.getText());
         pwd = String.valueOf(mEtPwd.getText());
+        if (TextUtils.isEmpty(name) ||TextUtils.isEmpty(pwd)){
+            Toast.makeText(mContext, "账号密码不能为空", Toast.LENGTH_SHORT).show();
+        }
         if ("admin".equals(name) && "admin".equals(pwd)){
             AdminActivity.startActivity(mContext);
             finish();

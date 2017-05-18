@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:orientation="vertical">
 
     <ImageView
+        android:layout_marginBottom="30dp"
         android:layout_width="180dp"
         android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/car_image"
         android:id="@+id/car_icon"/>
     <LinearLayout
@@ -15,10 +18,16 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="车辆名称"
+            android:text="越野"
+            android:id="@+id/car_name"
             android:layout_height="wrap_content" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="车辆类型"
+            android:text="SUV"
+            android:id="@+id/car_leixing"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -28,10 +37,16 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="厢数"
+            android:text="两厢"
+            android:id="@+id/car_xiangshu"
             android:layout_height="wrap_content" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="排量"
+            android:text="2.0自动"
+            android:id="@+id/car_pailiang"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -41,10 +56,16 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="乘坐"
+            android:text="5人"
+            android:id="@+id/car_chengzuo"
             android:layout_height="wrap_content" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="新品  是／否"
+            android:text="是"
+            android:id="@+id/car_xin"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -54,10 +75,16 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="热门  是／否"
+            android:id="@+id/car_re"
+            android:text="是"
             android:layout_height="wrap_content" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="特价  是／否"
+            android:text="是"
+            android:id="@+id/car_te"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -67,11 +94,27 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="冰点价  是／否"
+            android:text="是"
+            android:id="@+id/car_ice"
             android:layout_height="wrap_content" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:hint="价格"
+            android:text="120"
+            android:id="@+id/car_money"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/btn_updae"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:background="@drawable/register_btn_bg_selector"
+        android:textColor="#FFFFFF"
+        android:text="上传"/>
 </LinearLayout>

@@ -73,7 +73,7 @@ public class AdminOrder extends BaseFragment {
 
     @Override
     protected View initView() {
-        View view = View.inflate(mActivity, R.layout.activity_admin, null);
+        View view = View.inflate(mActivity, R.layout.admin_order, null);
         ll_NoData = (LinearLayout) view.findViewById(R.id.ll_no_data);
         et_Sousuo = (EditText) view.findViewById(R.id.et_sousuo);
         listView = (ListView) view.findViewById(R.id.list);
@@ -88,7 +88,8 @@ public class AdminOrder extends BaseFragment {
         btn_Cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                carList = null;
+                carList.clear();
+                et_Sousuo.setText("");
                 myAdapter.notifyDataSetChanged();
                 ll_NoData.setVisibility(View.VISIBLE);
             }

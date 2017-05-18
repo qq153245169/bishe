@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="1b9955a3bea3ab18af9cdabf57ed68af4e3618c7">
+        sha1="b720eb8a8d7b7d4a4dc78249d12c879bbbdd3456">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_bab2765f402d6659da6e7084be4ab549318c1abd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/rxandroid-1.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="19beef6debb6a22febc28777464c71bfccbafe3d">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxandroid-1.2.0_4d986fddc87064852871179a9d425dc05bd8e096/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -27,6 +18,105 @@
         revision="25.0.2"
         sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.0_040e165a1bc6e0b0312c37ed699edd076758f392/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/me.iwf.photopicker/PhotoPicker/0.9.5/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="db1e98b0297d5012e722a8f83d239afe58a0ba6e">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/me.iwf.photopicker-PhotoPicker-0.9.5_28a06d75c5b31a2293f849100a291f678be03fd0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/rxjava-1.1.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ac615240b277e7fd3950d7b35f73b733f310cede">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.6_933940c61f200bee1b6608c6b810af03a0666c0f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/libs/AMap_Location_V3.4.0_20170427.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa2675ac2111742d045390a97dd39ea48d957b87">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/AMap_Location_V3.4.0_20170427_1aeb946e13db65081ad96a4a1860ef2c73cc4d89/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.wang.avi/library/2.1.3/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e699699fae0092703de1d02b217f43803d0f7e0a">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.wang.avi-library-2.1.3_89faf6b2ff496073c2993afae2375a466326501c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_86741ea9d2e24ef82ff6fc0263f80e1fd7935c2b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_2097aadbd88015271f53ee0e4a7c91681d0bf078/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/okhttp-3.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e7cb33d9f82d3b8521c6594b180f4dd9fc6d49f2">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.1_4edf339f062dca24ce2780eac26d3634440f9415/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/okio-1.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bbeca71da43c8f4bc9ceedec002060f53437ad26">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.7.0_05447da7c0907f403e3f10ab945be24aeccee2ab/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_1dcbc1ff3395b9a2a383381aac690bc59ca7e24a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.0_24ab0f8f8d9ff4a294e1da61894f3cf14e0c70ce/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/rxandroid-1.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19beef6debb6a22febc28777464c71bfccbafe3d">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxandroid-1.2.0_4d986fddc87064852871179a9d425dc05bd8e096/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -66,39 +156,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/rxjava-1.1.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ac615240b277e7fd3950d7b35f73b733f310cede">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.6_933940c61f200bee1b6608c6b810af03a0666c0f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/liangjie06/file/bishe/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="55af09cd9e142c08ba63c0355eb746e8c92c1ccc">
+        sha1="995401451368018c5162656a4acd94cab73b4562">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7610a60b3b42ab9a334765d74830e855d134ac32/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/libs/AMap_Location_V3.4.0_20170427.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fa2675ac2111742d045390a97dd39ea48d957b87">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/AMap_Location_V3.4.0_20170427_1aeb946e13db65081ad96a4a1860ef2c73cc4d89/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.wang.avi/library/2.1.3/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e699699fae0092703de1d02b217f43803d0f7e0a">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.wang.avi-library-2.1.3_89faf6b2ff496073c2993afae2375a466326501c/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -129,39 +192,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_86741ea9d2e24ef82ff6fc0263f80e1fd7935c2b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/okhttp-3.3.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e7cb33d9f82d3b8521c6594b180f4dd9fc6d49f2">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.1_4edf339f062dca24ce2780eac26d3634440f9415/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.0_8e544481a48866d17c68b31bdaa8954f0ee58e98/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/cn.bmob.android/bmob-sdk/3.5.0/jars/libs/okio-1.7.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bbeca71da43c8f4bc9ceedec002060f53437ad26">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.7.0_05447da7c0907f403e3f10ab945be24aeccee2ab/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -180,24 +216,6 @@
         revision="25.0.2"
         sha1="ae353005f973da1cd8545b54354504c2503f6865">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/pinyin4j-2.5.0_0fa299d9bcb6cac25613de3bf7b915d4b3d0756a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_1dcbc1ff3395b9a2a383381aac690bc59ca7e24a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/liangjie06/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.0_24ab0f8f8d9ff4a294e1da61894f3cf14e0c70ce/classes.dex" />
     </item>
     <item
         is-multidex="true"

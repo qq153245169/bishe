@@ -25,6 +25,7 @@ import com.example.liangjie06.zuche.module.fade.QAActivity;
 import com.example.liangjie06.zuche.module.personinfo.PersonInfoActivity;
 import com.example.liangjie06.zuche.module.register.LoginActivity;
 import com.example.liangjie06.zuche.module.vip.VipActivity;
+import com.example.liangjie06.zuche.utils.NumberUtils;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 
 import java.util.List;
@@ -264,30 +265,30 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void calculateJF(){
-
-        tvJifen.setText(allJiFen+"");
+        curJiFen = NumberUtils.float2(curJiFen);
+        tvJifen.setText(curJiFen+"");
         if(allJiFen>=50 && allJiFen<200){
             tvHuiYuanDJ.setText("银卡会员");
             tvHuiYuan.setText("银卡会员");
-            tvHY.setText("98");
+            tvHY.setText("9.8");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_silver);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card_silver);
         }else if (allJiFen>= 200&&allJiFen<500){
             tvHuiYuanDJ.setText("黄金会员");
             tvHuiYuan.setText("黄金会员");
-            tvHY.setText("95");
+            tvHY.setText("9.5");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card);
         }else if(allJiFen >=500&&allJiFen<1000){
             tvHuiYuanDJ.setText("铂金会员");
             tvHuiYuan.setText("铂金会员");
-            tvHY.setText("92");
+            tvHY.setText("9.2");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_normal);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card_normal);
         }else if (allJiFen>=1000) {
             tvHuiYuanDJ.setText("钻石会员");
             tvHuiYuan.setText("钻石会员");
-            tvHY.setText("88");
+            tvHY.setText("8.8");
             imgHYDJIcon.setImageResource(R.drawable.icon_privilege_card_diamond);
             imgHYIcon.setImageResource(R.drawable.icon_privilege_card_diamond);
         }

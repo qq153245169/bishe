@@ -18,7 +18,7 @@ public class Car extends BmobObject {
     private Boolean xin;
     private Boolean te;
     private Float price;
-    private Integer leiXing;
+    private String leiXing;
     private BmobFile icon;
     private Integer type;
 
@@ -54,11 +54,11 @@ public class Car extends BmobObject {
         this.price = price;
     }
 
-    public Integer getLeiXing() {
+    public String getLeiXing() {
         return leiXing;
     }
 
-    public void setLeiXing(Integer leiXing) {
+    public void setLeiXing(String leiXing) {
         this.leiXing = leiXing;
     }
 

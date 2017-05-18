@@ -124,9 +124,8 @@ public class FirstFragment extends Fragment {
                 return 0;
             } else if ("1".equals(carList.get(position).getType())) {
                 return 1;
-            } else {
-                return 2;
-            }
+            } else
+                return 0;
         }
 
         @Override

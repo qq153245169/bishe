@@ -30,6 +30,7 @@ import com.example.liangjie06.zuche.bean.Order;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.module.register.LoginActivity;
 import com.example.liangjie06.zuche.module.selectcar.view.PartSelect;
+import com.example.liangjie06.zuche.utils.NumberUtils;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 import com.example.liangjie06.zuche.utils.TimeUtils;
 
@@ -54,7 +55,7 @@ public class JiaoYiActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1){
-                tvJifen.setText(curJiFen+"");
+                tvJifen.setText(NumberUtils.float2(curJiFen/10)+"");
                 Log.e("lj","woshijifen"+curJiFen);
             }else {
                 tvJifen.setText(0+"");
@@ -214,10 +215,10 @@ public class JiaoYiActivity extends BaseActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     hasChecked = isChecked;
-                    money = money - curJiFen /10;
+                    money = NumberUtils.float2(money - curJiFen /10);
                     tvMoney.setText(money +"");
                 }else {
-                    money = money + curJiFen /10;
+                    money = NumberUtils.float2(money + curJiFen /10);
                     tvMoney.setText(money +"");
                 }
                 Log.e("lj","isChecked" +isChecked);
@@ -233,10 +234,13 @@ public class JiaoYiActivity extends BaseActivity {
             public void run() {
                 if (isPay) {
                     JiFen jiFen = new JiFen();
-                    jiFen.setJiFen( (allJifen + money /100));
-                    jiFen.setCurJifen(curJiFen + money /100);
+                    allJifen = NumberUtils.float2(allJifen + money /100);
+                    jiFen.setJiFen( allJifen);
+                    curJiFen = NumberUtils.float2(curJiFen + money /100);
+                    jiFen.setCurJifen(curJiFen);
                     if(isChecked){
-                        jiFen.setCurJifen(money / 100);
+                        float jifen = NumberUtils.float2(money / 100);
+                        jiFen.setCurJifen(jifen);
 
                     }
                     jiFen.update(objectId, new UpdateListener() {
@@ -306,7 +310,9 @@ public class JiaoYiActivity extends BaseActivity {
                             if (e == null) {
                                 if (list.size() > 0) {
                                     curJiFen = list.get(0).getCurJifen();
+                                    curJiFen = NumberUtils.float2(curJiFen);
                                     allJifen = list.get(0).getJiFen();
+                                    allJifen = NumberUtils.float2(allJifen);
                                     objectId = list.get(0).getObjectId();
                                     msg.what = 1;
                                     mHandler.sendEmptyMessage(msg.what);

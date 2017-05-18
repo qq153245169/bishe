@@ -14,6 +14,7 @@ import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.User;
+import com.example.liangjie06.zuche.utils.NumberUtils;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 
 import java.util.List;
@@ -66,6 +67,8 @@ public class VipActivity extends BaseActivity {
     }
 
     private void setData(){
+        allJifen = NumberUtils.float2(allJifen);
+        curJifen = NumberUtils.float2(curJifen);
         tv_Leiji.setText(""+ allJifen);
         tv_Keyong.setText(""+curJifen);
         if(allJifen>=50 && allJifen<200){

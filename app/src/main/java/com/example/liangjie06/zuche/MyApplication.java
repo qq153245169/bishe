@@ -1,6 +1,7 @@
 package com.example.liangjie06.zuche;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
