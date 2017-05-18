@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.bean.User;
-import com.example.liangjie06.zuche.fragment.BaseFragment;
+import com.example.liangjie06.zuche.base.BaseFragment;
 import com.example.liangjie06.zuche.module.mainpager.order.AllFragment;
 import com.example.liangjie06.zuche.module.mainpager.order.CompleteOrderFragment;
 import com.example.liangjie06.zuche.module.mainpager.order.DelayOrderFragment;
@@ -69,15 +69,26 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     protected View initView() {
+        view = View.inflate(mActivity, R.layout.order_pager, null);
         myUser =  BmobUser.getCurrentUser(User.class);
         if (myUser == null){
+            isCreate = true;
             LoginActivity.startLoginActivity(mActivity);
         }else {
             Log.e("lj", "dengluchengg"+ myUser.getObjectId() + "name"+myUser.getUsername());
-            view = View.inflate(mActivity, R.layout.order_pager, null);
+
             preView();
         }
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isCreate){
+            preView();
+        }
+        isCreate = false;
     }
 
     private void preView() {

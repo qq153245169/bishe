@@ -1,6 +1,7 @@
 package com.example.liangjie06.zuche.module.mainpager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +18,7 @@ import com.example.liangjie06.zuche.activity.AboutActivity;
 import com.example.liangjie06.zuche.bean.Account;
 import com.example.liangjie06.zuche.bean.JiFen;
 import com.example.liangjie06.zuche.bean.User;
-import com.example.liangjie06.zuche.fragment.BaseFragment;
+import com.example.liangjie06.zuche.base.BaseFragment;
 import com.example.liangjie06.zuche.module.bankaccount.BankAccountActivity;
 import com.example.liangjie06.zuche.module.fade.NewUserActivity;
 import com.example.liangjie06.zuche.module.fade.QAActivity;
@@ -46,6 +47,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
+                    Log.e("lj", "what   ==0");
                     if(!TextUtils.isEmpty(backCardId)){
                         String str = backCardId.substring(4, backCardId.length() - 4);
                         String newStr = backCardId.replace(str, " **** ");
@@ -53,6 +55,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                     }
                     break;
                 case 1:
+                    Log.e("lj", "what   ==1");
                     calculateJF();
                     break;
             }
@@ -81,25 +84,31 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     private User myUser;
     private View view;
     private boolean isCreate;
+    private LinearLayout ll_kefu;
+    private TextView tvPhone;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isCreate = true;
-        Log.e("lj", "Person  onCreate" + isCreate);
+
     }
 
     @Override
     protected void initData() {
-        getInfo();
+        Log.e("lj","getinfo   initData");
+        //getInfo();
 
     }
 
     @Override
     protected View initView() {
-
+        Log.e("lj", "initView");
+        view = View.inflate(mActivity, R.layout.personal_pager, null);
         myUser =  BmobUser.getCurrentUser(User.class);
         if (myUser == null){
+            isCreate = true;
+            Log.e("lj", "Person  onCreate" + isCreate);
+            preView();
             LoginActivity.startLoginActivity(mActivity);
         }else {
             Log.e("lj", "dengluchengg"+ myUser.getObjectId() + "name"+myUser.getUsername());
@@ -109,8 +118,17 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isCreate) {
+            Log.e("lj", "getInfo    OnResume");
+            getInfo();
+        }
+        isCreate = false;
+    }
+
     private void preView(){
-        view = View.inflate(mActivity, R.layout.personal_pager, null);
 
         tv_Person = (TextView) view.findViewById(R.id.person_info);
         tv_Person.setOnClickListener(this);
@@ -137,6 +155,9 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         tvHuiYuan = (TextView) view.findViewById(R.id.huiyuan);
         imgHYDJIcon = (ImageView) view.findViewById(R.id.hydj_icon);
         imgHYIcon = (ImageView) view.findViewById(R.id.topIcon);
+        ll_kefu = (LinearLayout) view.findViewById(R.id.kefu);
+        ll_kefu.setOnClickListener(this);
+        tvPhone = (TextView) view.findViewById(R.id.phone);
     }
 
     @Override
@@ -166,6 +187,11 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 AboutActivity.startAboutActivity(mActivity);
                 break;
             case R.id.kefu:
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                String phone = (String) tvPhone.getText();
+                Uri data = Uri.parse("tel:" + phone);
+                intent.setData(data);
+                startActivity(intent);
                 break;
         }
     }
@@ -178,7 +204,12 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 final Message msg = Message.obtain();
                 BmobQuery<JiFen> jiFenBmobQuery = new BmobQuery<JiFen>();
                 if (myUser == null){
-                    return;
+                    myUser =  BmobUser.getCurrentUser(User.class);
+                    if (myUser == null){
+                        Log.e("lj", "user    null");
+                        return;
+                    }
+
                 }
                 jiFenBmobQuery.addWhereEqualTo("userName", myUser.getUsername())
                         .findObjects(new FindListener<JiFen>() {
@@ -189,6 +220,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                                         curJiFen = list.get(0).getCurJifen();
                                         allJiFen = list.get(0).getJiFen();
                                         msg.what = 1;
+                                        Log.e("lj","send        1");
                                         mHandler.sendEmptyMessage(msg.what);
                                     }else {
                                         Log.e("lj","积分没有查到");
@@ -212,6 +244,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                                 Message msg= Message.obtain();
                                 msg.what = 0;
                                 Log.e("lj",backCardId);
+                                Log.e("lj","send        0");
                                 mHandler.sendEmptyMessage(msg.what);
                             }else {
                                 Log.e("lj", "查询到account是空的"+list.size());

@@ -1,16 +1,20 @@
 package com.example.liangjie06.zuche.activity;
 
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.base.BaseActivity;
@@ -24,7 +28,6 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.http.bean.Init;
 import cn.bmob.v3.listener.FindListener;
 
 
@@ -42,6 +45,7 @@ public class PayActivity extends BaseActivity {
     private LinearLayout llcard;
     private User myUser;
     private float allMoney;
+    private boolean isPay;
     private ArrayList<Account> bankList;
     private Handler mHandler = new Handler(){
         @Override
@@ -99,8 +103,8 @@ public class PayActivity extends BaseActivity {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PayActivity.this.setResult(1);
-                PayActivity.this.finish();
+                showDialog();
+
             }
         });
         String str = myUser.getUsername();
@@ -163,5 +167,51 @@ public class PayActivity extends BaseActivity {
         super.onBackPressed();
         PayActivity.this.setResult(0);
         PayActivity.this.finish();
+    }
+
+    private void showDialog() {
+        LayoutInflater li = LayoutInflater.from(mContext);
+        View promptsView = li.inflate(R.layout.dialog_pay_pwd, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                mContext);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.et_input);
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("支付",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                // edit text
+                                if (!TextUtils.isEmpty(userInput.getText())) {
+                                    if ("123456".equals(String.valueOf(userInput.getText()))){
+
+                                        Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+                                        Log.e("lj","ispay" +isPay);
+                                        PayActivity.this.setResult(1);
+                                        PayActivity.this.finish();
+                                    }else {
+                                        Log.e("lj","else   ispay" +isPay);
+                                        Toast.makeText(mContext, "支付密码错误，请重试", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(mContext, "支付密码错误，请重试", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
     }
 }

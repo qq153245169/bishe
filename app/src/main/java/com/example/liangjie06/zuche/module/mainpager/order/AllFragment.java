@@ -24,6 +24,7 @@ import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 import com.example.liangjie06.zuche.utils.TimeUtils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +42,11 @@ public class AllFragment extends Fragment {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
+                    loding.hide();
                     break;
                 case 1:
                     mAdapter.notifyDataSetChanged();
+                    loding.hide();
                     Log.e("lj", "zhixinglema ");
                     break;
 
@@ -55,6 +58,7 @@ public class AllFragment extends Fragment {
     private ListView listView;
     private CarAdapter mAdapter;
     private SelectActivity mActivity;
+    private AVLoadingIndicatorView loding;
     private User myUser;
 
     @Override
@@ -67,6 +71,8 @@ public class AllFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         View v = inflater.inflate(R.layout.layout_first, container, false);
+        loding = (AVLoadingIndicatorView) v.findViewById(R.id.loding);
+
         listView = (ListView) v.findViewById(R.id.list_car);
         myUser = BmobUser.getCurrentUser(User.class);
         return v;

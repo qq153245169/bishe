@@ -23,6 +23,7 @@ import com.example.liangjie06.zuche.bean.Car;
 import com.example.liangjie06.zuche.module.selectcar.JiaoYiActivity;
 import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +40,11 @@ public class FiveFragment extends Fragment {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
+                    loding.hide();
                     break;
                 case 1:
                     mAdapter.notifyDataSetChanged();
+                    loding.hide();
                     Log.e("lj", "zhixinglema ");
                     break;
 
@@ -52,6 +55,7 @@ public class FiveFragment extends Fragment {
     private ArrayList<Car> carList;
     private ListView listView;
     private CarAdapter mAdapter;
+    private AVLoadingIndicatorView loding;
     private SelectActivity mActivity;
 
     @Override
@@ -64,6 +68,8 @@ public class FiveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         View v = inflater.inflate(R.layout.layout_suv, container, false);
+        loding = (AVLoadingIndicatorView) v.findViewById(R.id.loding);
+
         listView = (ListView) v.findViewById(R.id.list_car);
         return v;
     }

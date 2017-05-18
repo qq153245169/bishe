@@ -3,6 +3,8 @@ package com.example.liangjie06.zuche.module.register;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.base.BaseActivity;
 import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.module.admin.AdminActivity;
+import com.example.liangjie06.zuche.utils.ThreadPool;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,6 +34,19 @@ import cn.bmob.v3.listener.LogInListener;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
+    private Handler mhandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1){
+                Toast.makeText(mContext, "登陆成功", Toast.LENGTH_SHORT).show();
+                loding.hide();
+                finish();
+            }
+
+        }
+    };
+
     private EditText mEtId;
     private EditText mEtPwd;
     private Button mBtnLogin;
@@ -39,6 +56,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private String name;
     private String pwd;
+    private AVLoadingIndicatorView loding;
 
     public static void startLoginActivity(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -61,6 +79,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mTvRegister = (TextView) findViewById(R.id.tv_register);
         mTvRegister.setOnClickListener(this);
         mTvForget = (TextView) findViewById(R.id.tv_forget);
+        loding = (AVLoadingIndicatorView) findViewById(R.id.loding);
+        loding.hide();
     }
 
 
@@ -72,7 +92,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
         if (v.getId() == R.id.btn_login) {
             login();
-            finish();
+            loding.show();
         }
         if (v.getId() == R.id.tv_forget) {
 
@@ -87,18 +107,32 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             finish();
             return;
         }
-        User.loginByAccount(name, pwd, new LogInListener<User>() {
+
+        ThreadPool.runOnPool(new Runnable() {
             @Override
-            public void done(User user, BmobException e) {
-                if (user != null) {
-                    Log.e("lj", "登陆成功");
-                    finish();
-                } else {
-                    Log.e("lj", "登陆shibai" + e.toString());
-                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
-                }
+            public void run() {
+                User.loginByAccount(name, pwd, new LogInListener<User>() {
+                    @Override
+                    public void done(User user, BmobException e) {
+                        if (user != null) {
+                            if (e == null){
+                                Log.e("lj", "登陆成功");
+                                Message msg = Message.obtain();
+                                msg.what = 1;
+                                mhandler.sendEmptyMessage(msg.what);
+                            }else {
+                                Log.e("lj", "登陆shibai" + e.toString());
+                                Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.e("lj", "登陆shibai" + e.toString());
+                            Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
+
     }
 
     /**

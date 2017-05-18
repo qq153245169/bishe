@@ -2,7 +2,7 @@ package com.example.liangjie06.zuche.module.mainpager;
 
 import android.view.View;
 
-import com.example.liangjie06.zuche.fragment.BaseFragment;
+import com.example.liangjie06.zuche.base.BaseFragment;
 
 /**
  * Created by liangjie06 on 17/5/7.

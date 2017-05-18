@@ -24,6 +24,7 @@ import com.example.liangjie06.zuche.bean.User;
 import com.example.liangjie06.zuche.module.selectcar.SelectActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 import com.example.liangjie06.zuche.utils.TimeUtils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +42,11 @@ public class CompleteOrderFragment extends Fragment {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
+                    loding.hide();
                     break;
                 case 1:
                     mAdapter.notifyDataSetChanged();
+                    loding.hide();
                     Log.e("lj", "zhixinglema ");
                     break;
 
@@ -56,6 +59,7 @@ public class CompleteOrderFragment extends Fragment {
     private CarAdapter mAdapter;
     private SelectActivity mActivity;
     private User myUser;
+    private AVLoadingIndicatorView loding;
 
     @Override
     public void onAttach(Context context) {
@@ -69,6 +73,7 @@ public class CompleteOrderFragment extends Fragment {
         View v = inflater.inflate(R.layout.layout_thrid, container, false);
         listView = (ListView) v.findViewById(R.id.list_car);
         myUser = BmobUser.getCurrentUser(User.class);
+        loding = (AVLoadingIndicatorView) v.findViewById(R.id.loding);
         return v;
     }
 

@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ed549c84968fb00f9d47164e90cdf77468a09942">
+        sha1="1b9955a3bea3ab18af9cdabf57ed68af4e3618c7">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_bab2765f402d6659da6e7084be4ab549318c1abd/classes.dex" />
     </item>
     <item
@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="3a77e277fe238a88f3d272b88deb08c9b02a8a77">
+        sha1="55af09cd9e142c08ba63c0355eb746e8c92c1ccc">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7610a60b3b42ab9a334765d74830e855d134ac32/classes.dex" />
     </item>
     <item
@@ -90,6 +90,15 @@
         revision="25.0.2"
         sha1="fa2675ac2111742d045390a97dd39ea48d957b87">
         <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/2/AMap_Location_V3.4.0_20170427_1aeb946e13db65081ad96a4a1860ef2c73cc4d89/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/liangjie06/file/bishe/app/build/intermediates/exploded-aar/com.wang.avi/library/2.1.3/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e699699fae0092703de1d02b217f43803d0f7e0a">
+        <dex dex="/Users/liangjie06/file/bishe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.wang.avi-library-2.1.3_89faf6b2ff496073c2993afae2375a466326501c/classes.dex" />
     </item>
     <item
         is-multidex="true"

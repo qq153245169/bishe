@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.liangjie06.zuche.R;
 import com.example.liangjie06.zuche.bean.Car;
-import com.example.liangjie06.zuche.fragment.BaseFragment;
+import com.example.liangjie06.zuche.base.BaseFragment;
 import com.example.liangjie06.zuche.module.gostore.GoStoreActivity;
 import com.example.liangjie06.zuche.utils.ThreadPool;
 import com.example.liangjie06.zuche.view.BannerLayout;
@@ -153,6 +153,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void getTuiJian() {
+        if (carList != null){
+            setTuijian();
+            return;
+        }
         ThreadPool.runOnPool(new Runnable() {
             @Override
             public void run() {
